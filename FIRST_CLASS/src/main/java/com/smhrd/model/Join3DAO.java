@@ -8,22 +8,24 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.DB.SqlSessionManager;
 
-public class JoinDAO {
+public class Join3DAO {
 
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession session;
 
-	public ArrayList<JoinVO> buyingList(int mem_num) {
+	public ArrayList<Join3VO> AucResSuc() {
+		// 낙찰된 상품들
 		session = sqlSessionFactory.openSession(true);
-		List<JoinVO> jlist = session.selectList("buyingList", mem_num);
+		List<Join3VO> list = session.selectList("AucResSuc");
 		session.close();
-		return (ArrayList<JoinVO>) jlist;
+		return (ArrayList<Join3VO>) list;
 	}
-
-	public ArrayList<JoinVO> boughtList(int mem_num) {
+	
+	public ArrayList<Join3VO> AucResFail() {
+		// 유찰된 상품들
 		session = sqlSessionFactory.openSession(true);
-		List<JoinVO> jlist2 = session.selectList("boughtList", mem_num);
+		List<Join3VO> list = session.selectList("AucResFail");
 		session.close();
-		return (ArrayList<JoinVO>) jlist2;
+		return (ArrayList<Join3VO>) list;
 	}
 }

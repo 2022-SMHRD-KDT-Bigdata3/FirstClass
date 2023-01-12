@@ -66,4 +66,25 @@ public class MemDAO {
 		return info;
 	}
 
+	public int updatePoint(MemVO mvo) {
+		session = sqlSessionFactory.openSession(true);
+		int mres = session.update("updatePoint", mvo);
+		session.close();
+		return mres;
+	}
+
+	public MemVO selectOne(int mem_num) {
+		session = sqlSessionFactory.openSession(true);
+		MemVO mvo1 = session.selectOne("selectOne", mem_num);
+		session.close();		
+		return mvo1;
+	}
+	
+	public int updatePoint2(MemVO mvo2) {
+		session = sqlSessionFactory.openSession(true);
+		int mres2 = session.update("updatePoint2", mvo2);
+		session.close();
+		return mres2;
+	}
+
 }

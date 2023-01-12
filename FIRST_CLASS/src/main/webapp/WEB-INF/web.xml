@@ -136,6 +136,30 @@
 		<description></description>
 		<servlet-class>com.smhrd.controller.IdCheck</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>updateCurService</servlet-name>
+		<display-name>updateCurService</display-name>
+		<description></description>
+		<servlet-class>com.smhrd.controller.updateCurService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>updateSucBidService</servlet-name>
+		<display-name>updateSucBidService</display-name>
+		<description></description>
+		<servlet-class>com.smhrd.controller.updateSucBidService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>setSucBidderService</servlet-name>
+		<display-name>setSucBidderService</display-name>
+		<description></description>
+		<servlet-class>com.smhrd.controller.setSucBidderService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>updateFailBidService</servlet-name>
+		<display-name>updateFailBidService</display-name>
+		<description></description>
+		<servlet-class>com.smhrd.controller.updateFailBidService</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Test</servlet-name>
 		<url-pattern>/Test</url-pattern>
@@ -223,5 +247,21 @@
 		<servlet-mapping>
 			<servlet-name>IdCheck</servlet-name>
 			<url-pattern>/IdCheck</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>updateCurService</servlet-name>
+			<url-pattern>/updateCurService</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>updateSucBidService</servlet-name>
+			<url-pattern>/updateSucBidService</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>setSucBidderService</servlet-name>
+			<url-pattern>/setSucBidderService</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>updateFailBidService</servlet-name>
+			<url-pattern>/updateFailBidService</url-pattern>
 		</servlet-mapping>
 </web-app>

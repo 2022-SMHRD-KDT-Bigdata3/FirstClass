@@ -12,6 +12,9 @@
 		<typeAlias type="com.smhrd.model.BidVO" alias="BidVO" />
 		<typeAlias type="com.smhrd.model.PostVO" alias="PostVO" />
 		<typeAlias type="com.smhrd.model.JoinVO" alias="JoinVO" />
+		<typeAlias type="com.smhrd.model.Join2VO" alias="Join2VO" />
+		<typeAlias type="com.smhrd.model.Join3VO" alias="Join3VO" />
+		<typeAlias type="com.smhrd.model.TrdVO" alias="TrdVO" />
 	</typeAliases>
 
 	<environments default="development">
@@ -32,5 +35,8 @@
 		<mapper resource="com/smhrd/DB/BidMapper.xml" />
 		<mapper resource="com/smhrd/DB/PostMapper.xml" />
 		<mapper resource="com/smhrd/DB/JoinMapper.xml" />
+		<mapper resource="com/smhrd/DB/Join2Mapper.xml" />
+		<mapper resource="com/smhrd/DB/Join3Mapper.xml" />
+		<mapper resource="com/smhrd/DB/TrdMapper.xml" />
 	</mappers>
 </configuration>

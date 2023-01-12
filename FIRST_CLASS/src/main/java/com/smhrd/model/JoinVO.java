@@ -3,7 +3,6 @@ package com.smhrd.model;
 import java.util.Date;
 
 public class JoinVO {
-	// 마이페이지의 구매내역-진행중인 경매에 사용
 	// prod 와 bid 테이블 inner join
 	private int prod_num;
 	private String prod_name;
@@ -11,6 +10,7 @@ public class JoinVO {
 	private int mem_num;
 	private Date prod_time;
 
+	// 마이페이지의 구매내역-진행중인 경매에 사용
 	public JoinVO(int prod_num, String prod_name, int bid_price, int mem_num, Date prod_time) {
 		this.prod_num = prod_num;
 		this.prod_name = prod_name;

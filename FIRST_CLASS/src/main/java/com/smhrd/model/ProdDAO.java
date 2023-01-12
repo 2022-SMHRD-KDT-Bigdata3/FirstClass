@@ -56,9 +56,9 @@ public class ProdDAO {
 		return (ArrayList<ProdVO>) list;
 	}
 
-	public ProdVO selectOne(int prod_num) {
+	public ProdVO selectOneProd(int prod_num) {
 		session = sqlSessionFactory.openSession(true);
-		ProdVO vo = session.selectOne("selectOne", prod_num);
+		ProdVO vo = session.selectOne("selectOneProd", prod_num);
 		session.close();
 		return vo;
 	}
@@ -92,4 +92,19 @@ public class ProdDAO {
 		session.close();
 		return ires;
 	}
+
+	public ArrayList<ProdVO> searchProd(String prod_name) {
+		session = sqlSessionFactory.openSession(true);
+		List<ProdVO> list = session.selectList("searchProd", prod_name);
+		session.close();
+		return (ArrayList<ProdVO>) list;
+	}
+
+	public int updateBidder(ProdVO upvo) {
+		session = sqlSessionFactory.openSession(true);
+		int res = session.update("updateBidder", upvo);
+		session.close();
+		return res;
+	}
+
 }

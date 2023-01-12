@@ -11,7 +11,8 @@
 	<select id="prodList" resultType="ProdVO">
 		select *
 		from prod
-		where prod_opinion is null
+		where
+		prod_opinion is null
 	</select>
 
 	<update id="ProdRegi_Admin_Input" parameterType="ProdVO">
@@ -50,7 +51,7 @@
 		bid_isUrgency='Y' and prod_opinion is not null
 	</select>
 
-	<select id="selectOne" parameterType="Integer"
+	<select id="selectOneProd" parameterType="Integer"
 		resultType="ProdVO">
 		select *
 		from prod
@@ -59,26 +60,46 @@
 
 	<select id="Sell_List" parameterType="Integer"
 		resultType="ProdVO">
-		select * from prod where mem_num = #{mem_num} and bidder_id
-		is null and prod_time is not null
+		select * 
+		from prod 
+		where mem_num = #{mem_num} 
+		and bidder_id is null 
+		and prod_time is not null
+		and prod_time <![CDATA[>]]> sysdate
 	</select>
 
 	<select id="Sell_List2" parameterType="Integer"
 		resultType="ProdVO">
-		select * from Prod where mem_num = #{mem_num} and bidder_id
-		is not null and prod_time is not null
+		select *
+		from prod
+		where mem_num = #{mem_num}
+		and prod_time is not null
+		and prod_time <![CDATA[<]]> sysdate
 	</select>
-	
+
 	<update id="updateCur" parameterType="ProdVO">
 		UPDATE prod
 		SET prod_cur = #{prod_cur}
 		WHERE prod_num = #{prod_num}
 	</update>
-	
+
 	<update id="aucClose" parameterType="Integer">
 		update prod
-		set prod_time = sysdate
+		set prod_time =
+		sysdate
 		where prod_num = #{prod_num}
+	</update>
+	
+	<select id="searchProd" parameterType="String" resultType="ProdVO">
+		select *
+		from prod
+		where prod_name like '%'||#{prod_name}||'%' and prod_time is not null
+	</select>
+	
+	<update id="updateBidder" parameterType="ProdVO">
+		update prod
+		set bidder_id=#{bidder_id}
+		where prod_num=#{prod_num}
 	</update>
 
 </mapper>

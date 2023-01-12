@@ -8,22 +8,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.DB.SqlSessionManager;
 
-public class JoinDAO {
-
+public class Join2DAO {
+	
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession session;
 
-	public ArrayList<JoinVO> buyingList(int mem_num) {
+	public ArrayList<Join2VO> selectPopProd() {
 		session = sqlSessionFactory.openSession(true);
-		List<JoinVO> jlist = session.selectList("buyingList", mem_num);
+		List<Join2VO> list = session.selectList("selectPopProd");
 		session.close();
-		return (ArrayList<JoinVO>) jlist;
+		return (ArrayList<Join2VO>) list;
 	}
 
-	public ArrayList<JoinVO> boughtList(int mem_num) {
-		session = sqlSessionFactory.openSession(true);
-		List<JoinVO> jlist2 = session.selectList("boughtList", mem_num);
-		session.close();
-		return (ArrayList<JoinVO>) jlist2;
-	}
 }

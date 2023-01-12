@@ -28,7 +28,7 @@ public class calRemainService extends HttpServlet {
 //		System.out.println(prod_num);
 
 		ProdDAO dao = new ProdDAO();
-		ProdVO vo = dao.selectOne(prod_num);
+		ProdVO vo = dao.selectOneProd(prod_num);
 
 		Date date = vo.getProd_time();
 		Date now = new Date();

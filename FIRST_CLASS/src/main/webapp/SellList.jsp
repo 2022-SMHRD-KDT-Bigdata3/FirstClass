@@ -41,8 +41,11 @@
 				
 				<%
 				MemVO info = (MemVO) session.getAttribute("info");
+				
 				int mem_num = info.getMem_num();
+				
 				ProdDAO dao = new ProdDAO();
+				
 				ArrayList<ProdVO> list = dao.Sell_List(mem_num);
 				for (int i = 0; i < list.size(); i++) {
 				%>
@@ -67,16 +70,18 @@
 				<td>상품명</td>
 				<td>시작 입찰가</td>
 				<td>낙찰 금액</td>
+				<td>낙찰자</td>
 				</tr>
 				<%
 				ArrayList<ProdVO> list2 = dao.Sell_List2(mem_num);
-				for (int i = 0; i < list.size(); i++) {
+				for (int i = 0; i < list2.size(); i++) {
 				%>
 				<tr>
-					<td><%=list.get(i).getProd_num()%></td>
-					<td><%=list.get(i).getProd_name()%></td>
-					<td><%=list.get(i).getProd_price()%></td>
-					<td><%=list.get(i).getProd_cur()%></td>
+					<td><%=list2.get(i).getProd_num()%></td>
+					<td><%=list2.get(i).getProd_name()%></td>
+					<td><%=list2.get(i).getProd_price()%></td>
+					<td><%=list2.get(i).getProd_cur()%></td>
+					<td><%=list2.get(i).getBidder_id()%></td>					
 				</tr>
 				<%
 				}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.DB.Join2Mapper">
+
+	<select id="selectPopProd" resultType="Join2VO" >
+		select p.prod_num,
+    			p.prod_img,
+    			p.prod_name,
+    			p.bid_isUrgency,
+    			p.prod_time,
+    			p.prod_cur,
+    			p.prod_imme,
+    	count(b.bid_price) as bid_count
+		from prod p, bid b
+		where p.prod_num = b.prod_num  
+      			and prod_time<![CDATA[>]]>sysdate
+		group by p.prod_num,
+   		 			p.prod_img,
+    				p.prod_name,
+    				p.bid_isUrgency,
+    				p.prod_time,
+    				p.prod_cur,
+    				p.prod_imme
+		order by bid_count desc
+
+	</select>
+</mapper>

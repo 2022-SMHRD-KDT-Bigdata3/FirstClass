@@ -13,11 +13,11 @@ public class ProdVO {
 	private int prod_price;
 	private int prod_cur;
 	private int prod_imme;
-	private String bidder_id;
+	private int bidder_id;
 	private String prod_img;
 
 	public ProdVO(int prod_num, int cate_num, String prod_name, int mem_num, String bid_isUrgency, Date prod_time,
-			String prod_opinion, int prod_price, int prod_cur, int prod_imme, String bidder_id, String prod_img) {
+			String prod_opinion, int prod_price, int prod_cur, int prod_imme, int bidder_id, String prod_img) {
 		this.prod_num = prod_num;
 		this.cate_num = cate_num;
 		this.prod_name = prod_name;
@@ -51,17 +51,17 @@ public class ProdVO {
 		this.mem_num = mem_num;
 		this.bid_isUrgency = bid_isUrgency;
 	}
-	
-	// 현재입찰가 갱신시 사용
-	public ProdVO(int prod_num, int prod_cur) {
+
+	// 현재입찰가 갱신시 사용, 낙찰자 업데이트시 사용(안쓰는건 null)
+	public ProdVO(int prod_num, int prod_cur, int bidder_id) {
 		this.prod_num = prod_num;
 		this.prod_cur = prod_cur;
+		this.bidder_id = bidder_id;
 	}
-	
+
 
 	public ProdVO() {
 	}
-
 
 	@Override
 	public String toString() {
@@ -111,7 +111,7 @@ public class ProdVO {
 		return prod_imme;
 	}
 
-	public String getBidder_id() {
+	public int getBidder_id() {
 		return bidder_id;
 	}
 
@@ -159,7 +159,7 @@ public class ProdVO {
 		this.prod_imme = prod_imme;
 	}
 
-	public void setBidder_id(String bidder_id) {
+	public void setBidder_id(int bidder_id) {
 		this.bidder_id = bidder_id;
 	}
 

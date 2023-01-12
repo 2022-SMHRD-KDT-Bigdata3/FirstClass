@@ -10,7 +10,23 @@
 		from prod p, bid b
 		where p.prod_num = b.prod_num 
         	  and b.mem_num = #{mem_num} 
-        	  and (prod_time-sysdate)>0
+        	  and (prod_time-sysdate)<![CDATA[>]]>0
+		group by p.prod_num,
+         		 p.prod_name,
+         		 b.mem_num,
+         		 p.prod_time
+	</select>
+	
+	<select id="boughtList" parameterType="Integer" resultType="JoinVO">
+		select p.prod_num,
+        	   p.prod_name,
+        	   max(b.bid_price) as bid_price,
+        	   b.mem_num,
+        	   p.prod_time
+		from prod p, bid b
+		where p.prod_num = b.prod_num 
+        	  and b.mem_num = #{mem_num} 
+        	  and (prod_time-sysdate)<![CDATA[<]]>0
 		group by p.prod_num,
          		 p.prod_name,
          		 b.mem_num,

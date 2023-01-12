@@ -37,6 +37,11 @@ public class MemVO {
 		this.mem_pw = mem_pw;
 	}
 
+	public MemVO(int mem_num, int mem_po) {
+		this.mem_num = mem_num;
+		this.mem_po = mem_po;
+	}
+
 	public MemVO() {
 	}
 

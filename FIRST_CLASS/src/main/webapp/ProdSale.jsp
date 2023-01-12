@@ -39,14 +39,12 @@ td {
 	} else {
 
 	ProdDAO dao = new ProdDAO();
-	ProdVO vo = dao.selectOne(prod_num);
+	ProdVO vo = dao.selectOneProd(prod_num);
 
 	Date date = vo.getProd_time();
 	Date now = new Date();	
 	
-	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이
-	System.out.println(diffSec);
-	
+	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이	
 	%>
 	<h1>
 		<a href="main.jsp">메인페이지로 이동</a>
@@ -76,7 +74,8 @@ td {
 		</tr>
 		<tr>
 			<td>현재입찰가</td>
-			<td><%=vo.getProd_cur()%></td>
+			<%-- <td><%=vo.getProd_cur()%></td> --%>
+			<td id="prod_cur"><%=vo.getProd_cur()%></td>
 		</tr>
 		<tr>
 			<td>즉시구매가</td>
@@ -102,7 +101,6 @@ td {
 	</table>
 
 	<script type="text/javascript">
-	
 		var bid = 0;
 		var prod_imme = 0;
 		var value = "";
@@ -168,6 +166,7 @@ td {
 									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능!");
 									$("#bidCheckResult").css("color", "black");
 									$("#bidCommit").removeAttr("disabled");
+									$("#bidCheck").attr("disabled", true);
 								} else {
 									$("#bidCheckResult").text("나같으면 즉시구매함 ㅋㅋ("+prod_imme+")");
 									$("#bidCheckResult").css("color", "red");
@@ -210,6 +209,8 @@ td {
 					if(data.bidCommit == "OK"){
 						$("#bidCommitResult").text("입찰성공!");
 						$("#bidCommitResult").css("color","black");
+						$("#bidCheck").attr("disabled", false);
+						$("#bidCommit").attr("disabled", "disabled");
 					} else {
 						$("#bidCommitResult").text("입찰실패...");
 						$("#bidCommitResult").css("color","red");
@@ -221,15 +222,22 @@ td {
 			});		
 		});
 		
-		setInterval(nowTime, 1000);
-		function nowTime(){
-			<%vo = dao.selectOne(prod_num);%>
-			let now = new Date();
-			let curTime = now.toLocaleTimeString("en-US", {hour12:false});
-			$("#curTime").text(curTime);
+		setInterval(updateCur, 1000);
+		function updateCur(){
+			$.ajax({
+				url : "updateCurService",
+				method : "POST",
+				dataType : "JSON",
+				success : resultCur,
+				error : errFun
+			});
 		}
 		
-
+		function resultCur(data){
+			var nowCur="";
+			nowCur+=data[0].prod_cur;
+			$("#prod_cur").text(nowCur);
+		}
 	</script>
 	<%}%>
 </body>

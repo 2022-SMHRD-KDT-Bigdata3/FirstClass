@@ -36,6 +36,26 @@
 		select
 		mem_email from mem where mem_email = #{mem_eamil}
 	</select>
+	
+	<update id="updatePoint" parameterType="MemVO">
+		update mem
+		set mem_po = mem_po-#{mem_po}
+		where mem_num = #{mem_num}
+	</update>
 
+	<select id="selectOne" parameterType="Integer" resultType="MemVO">
+		select *
+		from mem
+		where mem_num=#{mem_num}
+	</select>
+
+
+	<update id="updatePoint2" parameterType="MemVO">
+		update mem
+		set mem_po = mem_po+#{mem_po}
+		where mem_num = #{mem_num}
+	</update>
+	
+	
 
 </mapper>

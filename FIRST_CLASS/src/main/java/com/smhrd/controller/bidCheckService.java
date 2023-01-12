@@ -33,7 +33,7 @@ public class bidCheckService extends HttpServlet {
 		ProdDAO pdao = new ProdDAO();
 
 		ArrayList<BidVO> bidCheckList = bdao.bidCheck(prod_num);
-		ProdVO prodvo = pdao.selectOne(prod_num);
+		ProdVO prodvo = pdao.selectOneProd(prod_num);
 
 		int prod_cur = prodvo.getProd_cur();
 

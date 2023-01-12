@@ -41,16 +41,24 @@
 		</ul>
 		<%}%>
 	</div>
+	<div> 
+		<form action="searchResult.jsp" method="get">
+			검색 :
+			<input type="text" name="search" placeholder="검색할 상품의 이름을 입력">
+			<input type="submit" value="검색">
+		</form> 
+	</div>
 	<div>
 		<%if (info != null) {%>
 			<%if (info.getMem_email().equals("admin")) {%>
 				<a href="MemberListService">회원목록</a>
 				<a href="ProdRegi_Admin.jsp">판매등록</a>
+				<a href="AuctionConfirm.jsp">경매확인</a>
 			<%} else {%>
 				<a href="ProdRegi_Member.jsp">판매등록</a>
 			<%}
 		}%>
-		<a href="#">인기 경매</a>
+		<a href="PopProd.jsp">인기 경매</a>
 		<a href="UrgencyProd.jsp">급처 경매</a>
 		<a href="PostMain.jsp">문의게시판</a>
 	</div>

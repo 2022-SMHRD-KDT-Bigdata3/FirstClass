@@ -48,46 +48,68 @@
 				
 				JoinDAO jdao = new JoinDAO();
 				
-				ArrayList<JoinVO> jlist = jdao.buyingList(mem_num);				
+				ArrayList<JoinVO> jlist = jdao.buyingList(mem_num);	
+				
+				Date now = new Date();
 				
 				for (int i = 0; i < jlist.size(); i++) {
+					Date date = jlist.get(i).getProd_time();
+					SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+					String prod_time = SDF.format(date);
+
+					long diff = date.getTime() - now.getTime();
+					if (diff > 0) {
 				%>
 				<tr>
 					<td style = "width:10%"><%=jlist.get(i).getProd_num()%></td>
 					<td style = "width:40%"><%=jlist.get(i).getProd_name()%></td>
 					<td style = "width:20%"><%=jlist.get(i).getBid_price()%></td>
-					<td style = "width:30%"><a href="ProdSale.jsp?prod_num=<%=jlist.get(i).getProd_num()%>">이동</a></td>
+					<td style = "width:20%"><%=prod_time%></td>
+					<td style = "width:10%"><a href="ProdSale.jsp?prod_num=<%=jlist.get(i).getProd_num()%>">이동</a></td>
 				</tr>
 				<%
+					}
 				}
 				%>
 			</tbody>
 		</table>
 		
-<%-- 		<h3>완료된 경매</h3>
+ 		<h3>완료된 경매</h3>
 		<table border ="1" style =" width :80%">
 			<tbody>
 			<tr>
 			<td>상품번호</td>
 			<td>상품명</td>
-			<td>낙찰가</td>
-			<td>경매종료날짜</td>
+			<td>내 입찰가</td>
+			<td>낙찰여부</td>
 			<td>이동</td>
 			<%
 			ArrayList<JoinVO> jlist2 = jdao.boughtList(mem_num);
 			
 			for (int i = 0; i < jlist2.size(); i++) {
+				int prod_num = jlist2.get(i).getProd_num();
+				
+				ProdDAO pdao = new ProdDAO();
+				ProdVO pvo = pdao.selectOneProd(prod_num);
+				
+				int prod_cur = pvo.getProd_cur();
+				String isSucBid="";
+				if(prod_cur>jlist2.get(i).getBid_price()){
+					isSucBid="패찰";
+				}else{					
+					isSucBid="낙찰";
+				}
 			%>	
 			<tr>
-				<td style = "width:10%"><%=blist.get(i).getBid_num()%></td>
-				<td style = "width:30%"><%=plist.get(i).getProd_name()%></td>
-				<td style = "width:20%"><%=plist.get(i).getProd_price()%></td>
-				<td style = "width:20%"><%=plist.get(i).getProd_cur()%></td>
-				<td style = "width:20%"><%=prod_time%></td>
+				<td style = "width:10%"><%=jlist2.get(i).getProd_num()%></td>
+				<td style = "width:30%"><%=jlist2.get(i).getProd_name()%></td>
+				<td style = "width:20%"><%=jlist2.get(i).getBid_price()%></td>
+				<td style = "width:20%"><%=isSucBid%></td>
+				<td style = "width:10%"><a href="ProdSale.jsp?prod_num=<%=jlist2.get(i).getProd_num()%>">이동</a></td>
 			</tr>
 			<%}%>
 			</tbody>
-		</table> --%>
+		</table>
 	</div>
 
 	

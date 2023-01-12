@@ -32,8 +32,8 @@ public class bidCommitService extends HttpServlet {
 //		System.out.println(vo.toString());
 
 		ProdDAO pdao = new ProdDAO();
-		ProdVO pvo = new ProdVO(prod_num, prod_cur);
-		ProdVO immeProd = pdao.selectOne(prod_num);
+		ProdVO pvo = new ProdVO(prod_num, prod_cur, 0);
+		ProdVO immeProd = pdao.selectOneProd(prod_num);
 
 		int res = 0;
 
