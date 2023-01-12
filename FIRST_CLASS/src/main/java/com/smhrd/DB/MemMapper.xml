@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.DB.MemMapper">
+	<insert id="join_mem" parameterType="MemVO">
+		insert into mem
+		values(mem_seq.nextval,#{mem_email},#{mem_pw},#{mem_name},#{mem_addr},#{mem_ph},'S',0,'M')
+	</insert>
+
+	<select id="login" parameterType="MemVO" resultType="MemVO">
+		select *
+		from mem
+		where mem_email=#{mem_email} and mem_pw=#{mem_pw}
+	</select>
+
+	<update id="update_mem" parameterType="MemVO">
+		update mem set mem_pw =
+		#{mem_pw}, mem_name = #{mem_name}, mem_addr =#{mem_addr}, mem_ph =
+		#{mem_ph} where mem_email=#{mem_email}
+	</update>
+
+	<select id="pointCheck" parameterType="Integer"
+		resultType="Integer">
+		select mem_po from mem where mem_num = #{mem_num}
+	</select>
+
+	<select id="memberList" resultType="MemVO">
+		select * from mem
+	</select>
+
+	<delete id="memberDelete" parameterType="int">
+		delete from mem where
+		mem_num=#{mem_num}
+	</delete>
+
+	<select id="serch_id" parameterType="String" resultType="MemVO">
+		select
+		mem_email from mem where mem_email = #{mem_eamil}
+	</select>
+
+
+</mapper>

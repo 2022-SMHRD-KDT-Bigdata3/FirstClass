@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.DB.ProdMapper">
+
+	<insert id="prodReg_mem" parameterType="ProdVO">
+		insert into prod
+		values(prod_seq.nextval, null, #{prod_name}, #{mem_num},
+		#{bid_isUrgency}, null, null, null, null, null, null, null)
+	</insert>
+
+	<select id="prodList" resultType="ProdVO">
+		select *
+		from prod
+		where prod_opinion is null
+	</select>
+
+	<update id="ProdRegi_Admin_Input" parameterType="ProdVO">
+		update prod
+		set
+		cate_num=#{cate_num},
+		prod_time=#{prod_time},
+		prod_opinion=#{prod_opinion},
+		prod_price=#{prod_price},
+		prod_cur=#{prod_cur},
+		prod_imme=#{prod_imme},
+		prod_img=#{prod_img}
+		where
+		prod_num=#{prod_num}
+	</update>
+
+	<select id="selectCate" parameterType="Integer"
+		resultType="ProdVO">
+		select *
+		from prod
+		where cate_num=#{cate_num} and
+		prod_opinion is not null
+	</select>
+
+	<select id="selectAll" resultType="ProdVO">
+		select *
+		from prod
+		where
+		prod_opinion is not null
+	</select>
+
+	<select id="selectUrg" resultType="ProdVO">
+		select *
+		from prod
+		where
+		bid_isUrgency='Y' and prod_opinion is not null
+	</select>
+
+	<select id="selectOne" parameterType="Integer"
+		resultType="ProdVO">
+		select *
+		from prod
+		where prod_num = #{prod_num}
+	</select>
+
+	<select id="Sell_List" parameterType="Integer"
+		resultType="ProdVO">
+		select * from prod where mem_num = #{mem_num} and bidder_id
+		is null and prod_time is not null
+	</select>
+
+	<select id="Sell_List2" parameterType="Integer"
+		resultType="ProdVO">
+		select * from Prod where mem_num = #{mem_num} and bidder_id
+		is not null and prod_time is not null
+	</select>
+	
+	<update id="updateCur" parameterType="ProdVO">
+		UPDATE prod
+		SET prod_cur = #{prod_cur}
+		WHERE prod_num = #{prod_num}
+	</update>
+	
+	<update id="aucClose" parameterType="Integer">
+		update prod
+		set prod_time = sysdate
+		where prod_num = #{prod_num}
+	</update>
+
+</mapper>

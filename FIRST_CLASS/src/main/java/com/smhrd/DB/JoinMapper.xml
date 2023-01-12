@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.DB.JoinMapper">
+	<select id="buyingList" parameterType="Integer" resultType="JoinVO">
+		select p.prod_num,
+        	   p.prod_name,
+        	   max(b.bid_price) as bid_price,
+        	   b.mem_num,
+        	   p.prod_time
+		from prod p, bid b
+		where p.prod_num = b.prod_num 
+        	  and b.mem_num = #{mem_num} 
+        	  and (prod_time-sysdate)>0
+		group by p.prod_num,
+         		 p.prod_name,
+         		 b.mem_num,
+         		 p.prod_time
+	</select>
+
+</mapper>

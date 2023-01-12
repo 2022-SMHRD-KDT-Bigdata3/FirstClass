@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 네임 스페이스 -->
+<mapper namespace="com.smhrd.DB.PostMapper">
+
+	<!-- 게시글 생성하기 -->
+	<insert id="postInsert" parameterType="PostVO">
+		insert into post
+		values(post_seq.nextval, #{post_title}, #{mem_num}, #{post_con}, sysdate)
+	</insert>
+
+	<!-- 전체 게시글 불러오기 -->
+	<select id="postList" resultType="PostVO">
+		select * from post order by post_date desc
+	</select>
+
+	<!-- 내 게시글 불러오기 -->
+	<select id="postSelectOne" parameterType="Integer" resultType="PostVO">
+		select * from post where post_num=#{post_num}
+	</select>
+
+	<!-- 게시글 삭제하기 -->
+	<delete id="postDelete" parameterType="PostVO">
+		delete from post where post_num=#{post_num} and mem_num=#{mem_num}
+	</delete>
+
+</mapper>

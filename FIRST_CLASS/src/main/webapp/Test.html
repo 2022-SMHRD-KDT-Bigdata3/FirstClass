@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 	<form action="TestService" method="post">
+		<input type="text" name="num" placeholder = "1~100 사이 숫자 입력"> 
+		<br> 
+		<input type="text" name="name" placeholder = "이름 입력"> 
+		<br> <input type="submit" value="제출">
+	</form> -->
+	
+	<input type="text" id="one" placeholder="숫자를 입력하세요." />
+	<button onclick="plus();">+</button>
+	<button onclick="minus();">-</button>
+	<input type="text" id="two" placeholder="숫자를 입력하세요." />
+	<strong>=</strong>
+	<input type="text" id="three" placeholder="숫자를 입력하세요." />
+	<script>
+		/*
+		    1. input#one의 value 값을 가지고 온다.
+		    2. input#two의 value 값을 가지고 온다.
+		    3. 갖고온 value 값들을 산술연산자로 계산한다.
+		    4. 계산한 값을 input#three에 출력해준다.
+		 */
+		var plus = function() {
+			var a = document.querySelector("#one").value;
+			var b = document.querySelector("#two").value;
+			/*
+			input의 value 값은 문자열로 들어오기 때문에 
+			parsetFloat();을 이용해 숫자열로 변경해주어야한다.
+			 */
+			var result = parseFloat(a) + parseFloat(b);
+			document.querySelector("#three").value = result;
+		};
+
+		var minus = function() {
+			var a = document.querySelector("#one").value;
+			var b = document.querySelector("#two").value;
+			/*
+			input의 value 값은 문자열로 들어오기 때문에 parsetFloat();로 숫자열로
+			 */
+			var result = parseFloat(a) - parseFloat(b);
+			document.querySelector("#three").value = result;
+		};
+	</script>
+	
+</body>
+</html>
