@@ -107,4 +107,11 @@ public class ProdDAO {
 		return res;
 	}
 
+	public ArrayList<ProdVO> AucResFail() {
+		session = sqlSessionFactory.openSession(true);
+		List<ProdVO> list = session.selectList("AucResFail");
+		session.close();
+		return (ArrayList<ProdVO>) list;
+	}
+
 }

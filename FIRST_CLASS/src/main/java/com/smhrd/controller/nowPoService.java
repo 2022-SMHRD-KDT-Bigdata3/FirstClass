@@ -8,24 +8,36 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.smhrd.model.ProdDAO;
-import com.smhrd.model.ProdVO;
-import com.smhrd.model.Join3VO;
+import com.smhrd.model.MemDAO;
+import com.smhrd.model.MemVO;
 
-public class updateFailBidService extends HttpServlet {
+public class nowPoService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProdDAO dao = new ProdDAO();
-		ArrayList<ProdVO> list = dao.AucResFail();
-		response.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = request.getSession();
+		MemVO info = (MemVO) session.getAttribute("info");
+		
+		int mem_num = info.getMem_num();
+		
+		MemDAO dao = new MemDAO();
+		MemVO vo = dao.selectOne(mem_num);
+		
+		System.out.println("포인트 보유량 : "+ vo.getMem_po());
+		
+		ArrayList<MemVO> list = new ArrayList<>();
+		list.add(vo);
+		
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 		String result = gson.toJson(list);
 		out.print(result);
+		
 	}
 
 }

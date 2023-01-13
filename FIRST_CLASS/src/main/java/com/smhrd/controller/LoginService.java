@@ -24,14 +24,14 @@ public class LoginService extends HttpServlet {
 		String mem_pw = request.getParameter("mem_pw");
 
 		MemVO vo = new MemVO(mem_email, mem_pw);
-		System.out.println(vo.toString());
+//		System.out.println(vo.toString());
 
 		MemDAO dao = new MemDAO();
 		MemVO info = dao.login(vo);
 
 		if (info != null) {
 			System.out.println("로그인 성공!");
-			System.out.println(info.toString());
+//			System.out.println(info.toString());
 			session.setAttribute("info", info);
 		} else {
 			System.out.println("로그인 실패...");

@@ -24,6 +24,12 @@ public class BidVO {
 		this.mem_num = mem_num;
 	}
 
+	// 최대입찰가 부른사람 찾기위해 사용
+	public BidVO(int prod_num, int bid_price) {
+		this.prod_num = prod_num;
+		this.bid_price = bid_price;
+	}
+
 	public BidVO() {
 
 	}

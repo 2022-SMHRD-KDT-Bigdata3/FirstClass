@@ -19,8 +19,24 @@
 	list = dao.selectCate(cate_num);
 	
 	Date now = new Date();
+	
+	String src = "";
+	if(cate_num == 4){
+		src="./image/disney_logo.png";}
+	else if(cate_num == 6){
+		src="./image/demon_slayer_logo.png";}
+	else if(cate_num == 8){
+		src="./image/gundam1.png";}
+	else if(cate_num == 10){
+		src="./image/onepice_logo.png";}
+	else{
+		src="./image/mavel_logo.png";}
 	%>
 	<h1> <a href="main.jsp">메인페이지로 이동</a></h1>
+	<!-- 2:기타 4:디즈니 6:귀칼 8:건담 10:원피스 12:마블 -->
+	<div>
+		<img src="<%=src%>" width="200px" height="auto" >
+	</div>
 	<table border="1">
 		<tr>
 			<td>상품사진</td>

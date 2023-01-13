@@ -32,7 +32,6 @@ td {
 					<td>상품명</td>
 					<td>판매자</td>
 					<td>낙찰가</td>
-					<td>낙찰자</td>
 					<td>확인</td>
 				</tr>
 			</tbody>
@@ -78,10 +77,8 @@ td {
 				html += "<td>" + data[i].prod_name + "</td>";
 				html += "<td>" + data[i].seller + "</td>";
 				html += "<td>" + data[i].bid_price + "</td>";
-				html += "<td>" + data[i].suc_bidder + "</td>";
 				html += "<td><a href='setSucBidderService?";
-				html +=	"prod_num=" + data[i].prod_num; 
-				html += "&bidder_id=" + data[i].bidder;
+				html +=	"prod_num=" + data[i].prod_num;
 				html += "&bid_price=" + data[i].bid_price;
 				html += "&seller_id=" + data[i].seller;
 				html += "'>확인</a></td>";
@@ -111,7 +108,7 @@ td {
 				html += "' width='200px' height='200px'></td>";				
 				html += "<td>" + data[i].prod_num + "</td>";
 				html += "<td>" + data[i].prod_name + "</td>";
-				html += "<td>" + data[i].seller + "</td>";
+				html += "<td>" + data[i].mem_num + "</td>";
 				html += "</tr>";
 			}
 			$("#failBidList").html(html);

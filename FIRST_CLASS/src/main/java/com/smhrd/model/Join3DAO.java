@@ -21,11 +21,13 @@ public class Join3DAO {
 		return (ArrayList<Join3VO>) list;
 	}
 	
-	public ArrayList<Join3VO> AucResFail() {
-		// 유찰된 상품들
+	public ArrayList<Join3VO> selAllBid(int prod_num){
+		// 낙찰된 상품에 입찰했던 모든 사용자들 보려고 씀
 		session = sqlSessionFactory.openSession(true);
-		List<Join3VO> list = session.selectList("AucResFail");
+		List<Join3VO> list = session.selectList("selAllBid", prod_num);
 		session.close();
 		return (ArrayList<Join3VO>) list;
 	}
+	
+	
 }

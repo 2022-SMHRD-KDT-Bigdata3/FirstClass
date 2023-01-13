@@ -85,8 +85,7 @@
 
 	<update id="aucClose" parameterType="Integer">
 		update prod
-		set prod_time =
-		sysdate
+		set prod_time = sysdate
 		where prod_num = #{prod_num}
 	</update>
 	
@@ -101,5 +100,11 @@
 		set bidder_id=#{bidder_id}
 		where prod_num=#{prod_num}
 	</update>
+	
+	<select id="AucResFail" resultType="ProdVO">
+		select *
+		from prod
+		where prod_time <![CDATA[<]]> sysdate and prod_price = prod_cur
+	</select>
 
 </mapper>

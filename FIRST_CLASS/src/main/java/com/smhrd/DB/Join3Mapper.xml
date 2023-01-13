@@ -7,6 +7,23 @@
 			   p.prod_name,
 			   p.mem_num as seller,
 			   max(b.bid_price) as bid_price,
+			   p.bidder_id as suc_bidder
+		from prod p, bid b
+		where p.prod_num = b.prod_num
+			  and p.prod_time <![CDATA[<]]> sysdate
+			  and p.prod_price != p.prod_cur
+			  and p.bidder_id is null
+		group by p.prod_img,
+				 p.prod_num,
+				 p.prod_name,
+				 p.mem_num,
+				 p.bidder_id
+		order by bid_price desc
+<!-- 		select p.prod_img,
+			   p.prod_num,
+			   p.prod_name,
+			   p.mem_num as seller,
+			   max(b.bid_price) as bid_price,
 			   b.mem_num as bidder,
 			   p.bidder_id as suc_bidder
 		from prod p, bid b
@@ -20,27 +37,28 @@
 				 p.mem_num,
 				 b.mem_num,
 				 p.bidder_id
-		order by bid_price desc
+		order by bid_price desc -->
 	</select>
-
-	<select id="AucResFail" resultType="Join3VO">
+	
+	<select id="selAllBid" parameterType="Integer" resultType="Join3VO">
 		select p.prod_img,
-			   p.prod_num,
-			   p.prod_name,
-			   p.mem_num as seller,
-			   max(b.bid_price) as bid_price,
-			   b.mem_num as bidder,
-			   p.bidder_id as suc_bidder
+       		   p.prod_num,
+	   		   p.prod_name,
+	   		   p.mem_num as seller,
+	   		   max(b.bid_price) as bid_price,
+	   		   b.mem_num as bidder,
+	   		   p.bidder_id as suc_bidder
 		from prod p, bid b
 		where p.prod_num = b.prod_num
-			  and p.prod_time<![CDATA[<]]>sysdate
-			  and p.prod_price = p.prod_cur
+	  		  and p.prod_time<![CDATA[<]]>sysdate
+	  		  and p.prod_price != p.prod_cur
+	  		  and p.prod_num = #{prod_num}
 		group by p.prod_img,
-				 p.prod_num,
+		 		 p.prod_num,
 				 p.prod_name,
-				 p.mem_num,
-				 b.mem_num,
-				 p.bidder_id
+		 		 p.mem_num,
+		 		 b.mem_num,
+		 		 p.bidder_id
 		order by bid_price desc
 	</select>
 </mapper>

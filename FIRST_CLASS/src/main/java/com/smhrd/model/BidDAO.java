@@ -41,4 +41,20 @@ public class BidDAO {
 		session.close();
 		return res;
 	}
+
+	public BidVO selectOneBid(BidVO bvo) {
+		session = sqlSessionFactory.openSession(true);
+		BidVO vo = new BidVO();
+		vo = session.selectOne("selectOneBid", bvo);
+		session.close();
+		return vo;
+	}
+
+	public BidVO selectMaxBid(BidVO vo) {
+		session = sqlSessionFactory.openSession(true);
+		BidVO maxBidvo = new BidVO();
+		maxBidvo = session.selectOne("selectMaxBid", vo);
+		session.close();
+		return maxBidvo;
+	}
 }

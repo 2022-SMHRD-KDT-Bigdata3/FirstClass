@@ -30,4 +30,16 @@
 			sysdate
 		)
 	</insert>
+	
+	<select id="selectOneBid" parameterType="BidVO" resultType="BidVO">
+		select *
+		from bid
+		where prod_num = #{prod_num} and bid_price = #{bid_price}
+	</select>
+	
+	<select id="selectMaxBid" parameterType="BidVO" resultType="BidVO">
+		select max(bid_price) as bid_price
+		from bid
+		where prod_num=#{prod_num} and mem_num=#{mem_num}
+	</select>
 </mapper>

@@ -18,21 +18,28 @@
 </head>
 <body>
 	<div>
+		<h1>
+			<a href="main.jsp">메인페이지로 이동</a>
+		</h1>
 		<h2>회원목록</h2>
 		<table border="1">
 			<thead align="center">
-				<td>번호</td>
-				<td>이메일</td>
-				<td>비밀번호</td>
-				<td>이름</td>
-				<td>전화번호</td>
-				<td>주소</td>
-				<td>삭제</td>
+				<tr>
+					<td>번호</td>
+					<td>이메일</td>
+					<td>비밀번호</td>
+					<td>이름</td>
+					<td>전화번호</td>
+					<td>주소</td>
+					<td>삭제</td>
+				</tr>
 			</thead>
 
 			<tbody align="center">
-				<%ArrayList<MemVO> list = (ArrayList<MemVO>) request.getAttribute("list");
-				for (int i = 0; i < list.size(); i++) {%>
+				<%
+				ArrayList<MemVO> list = (ArrayList<MemVO>) request.getAttribute("list");
+				for (int i = 0; i < list.size(); i++) {
+				%>
 				<tr>
 					<td><%=i + 1%></td>
 					<td><%=list.get(i).getMem_email()%></td>
@@ -42,7 +49,9 @@
 					<td><%=list.get(i).getMem_addr()%>
 					<td><a href="javascript:fnDel(<%=list.get(i).getMem_num()%>)">삭제</a></td>
 				</tr>
-				<%}%>
+				<%
+				}
+				%>
 			</tbody>
 		</table>
 	</div>

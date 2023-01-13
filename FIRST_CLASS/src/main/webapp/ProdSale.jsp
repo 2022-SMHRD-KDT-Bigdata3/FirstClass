@@ -104,12 +104,27 @@ td {
 		var bid = 0;
 		var prod_imme = 0;
 		var value = "";
+		var nowPo;
 		var interval = setInterval(calRemain, 1000);
 		
 		$(document).ready(function() {
 			console.log("문서 로드 완료");
 			calRemain();
 		});
+		
+ 		setInterval(nowPo, 1000);
+		function nowPo(){
+			$.ajax({
+				url : "nowPoService",
+				method : "POST",
+				dataType : "JSON",
+				success : resultPo,
+				error : errFun
+			});
+		}		
+		function resultPo(data){
+			nowPo=data[0].mem_po;
+		} 
 
 		function calRemain() {
 			$.ajax({
@@ -160,13 +175,15 @@ td {
 					console.log(data.bidCheck);
 					
 					if(value!="경매종료"){
-						if(bid<=<%=info.getMem_po()%>){
+						if(bid<=nowPo){
 							if (data.bidCheck == "OK") {
 								if (prod_imme >= bid) {
 									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능!");
 									$("#bidCheckResult").css("color", "black");
 									$("#bidCommit").removeAttr("disabled");
 									$("#bidCheck").attr("disabled", true);
+									$("#bid").attr("readonly",true);
+									updatePo();
 								} else {
 									$("#bidCheckResult").text("나같으면 즉시구매함 ㅋㅋ("+prod_imme+")");
 									$("#bidCheckResult").css("color", "red");
@@ -178,7 +195,7 @@ td {
 								$("#bidCommit").attr("disabled", "disabled");
 							}
 						} else {
-							$("#bidCheckResult").text("보유한 포인트가 부족합니다!\n("+<%=info.getMem_po()%>+")원 보유중!");
+							$("#bidCheckResult").text("보유한 포인트가 부족합니다!\n("+nowPo+")원 보유중!");
 							$("#bidCheckResult").css("color", "red");
 							$("#bidCommit").attr("disabled", "disabled");
 						}
@@ -210,7 +227,9 @@ td {
 						$("#bidCommitResult").text("입찰성공!");
 						$("#bidCommitResult").css("color","black");
 						$("#bidCheck").attr("disabled", false);
+						$("#bid").attr("readonly",false);
 						$("#bidCommit").attr("disabled", "disabled");
+						updateRealPo();
 					} else {
 						$("#bidCommitResult").text("입찰실패...");
 						$("#bidCommitResult").css("color","red");
@@ -231,13 +250,38 @@ td {
 				success : resultCur,
 				error : errFun
 			});
-		}
-		
+		}		
 		function resultCur(data){
 			var nowCur="";
 			nowCur+=data[0].prod_cur;
 			$("#prod_cur").text(nowCur);
 		}
+		// 포인트 얼마 까일지 계산하는 곳
+ 		function updatePo(){
+			$.ajax({
+				url : "updatePoService",
+				method : "POST",
+				data : {"bid_price":bid},
+				dataType : "JSON",
+				success:function(){
+					console.log("통신성공");
+				},
+				error:errFun
+			});
+		}
+ 		// 실제 포인트 차감하는 곳
+ 		function updateRealPo(){
+ 			$.ajax({
+ 				url:"updateRealPoService",
+ 				method:"POST",
+ 				dataType:"JSON",
+ 				success:function(){
+ 					console.log("통신성공");
+ 				},
+ 				error:errFun
+ 			});
+ 		}
+ 		
 	</script>
 	<%}%>
 </body>

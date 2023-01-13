@@ -38,6 +38,8 @@ public class bidCommitService extends HttpServlet {
 		int res = 0;
 
 		res = bdao.bidInsert(vo);
+		
+		// 입찰한 가격만큼 보유 포인트에서 차감하기
 
 		PrintWriter out = response.getWriter();
 		if (res > 0) {
