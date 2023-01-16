@@ -88,7 +88,7 @@
 				<div class="main_name">
 					<li>판매내역 조회</li>
 				</div>
-				<div class="selling_list">
+				<div style="overflow:scroll;" class="selling_list">
 					<div class="selling_list_name">
 						<span>진행중인 경매</span>
 					</div>
@@ -124,7 +124,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="selled_list">
+				<div style="overflow:scroll;" class="selled_list">
 					<div class="selling_list_name">
 						<span>완료된 경매</span>
 					</div>

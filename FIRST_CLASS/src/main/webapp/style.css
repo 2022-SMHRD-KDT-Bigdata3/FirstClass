@@ -337,7 +337,7 @@
 }
 .selling_list{
     width: 100%;
-    height: 300px;
+    height: 600px;
     margin: auto;
 
 }
@@ -477,7 +477,7 @@ td{
 .selled_list{    
     width: 1200px;
     height: 300px;
-    margin-top: 50px;
+    margin-top: auto;
 }
 .mypoint{
     display: flex;
