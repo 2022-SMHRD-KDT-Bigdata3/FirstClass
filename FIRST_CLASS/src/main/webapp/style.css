@@ -1,0 +1,898 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin:0px;
+    padding: 0px;
+    color :#000;
+}
+.intro_bg{
+    background-color: rgba(189, 219, 239, 0.5);
+    width : 100%;
+    height: 180px;
+}
+.main{
+    width:400px;
+    height: 80px;
+    margin-left: 20px;
+    line-height: 50px;
+    font-size: 22pt;  
+}
+.header{
+    display: flex;
+    width : 100%;
+    margin:auto;
+    height: 80px;
+}
+.search_area{
+    width: 800px;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.search_area > form > input{
+    border : 0.5;
+    width: 600px;
+    height: 40px;
+    background-color: rgba(0,0,0,0);
+    color:#000;
+    padding-left: 10px;
+    margin-left: 40px;
+    border-radius: 8px;
+}
+.search_area > form{
+    display: flex;
+}
+.search_icon{
+    width: 50px;
+    height: 40px;
+}
+.search_icon > input{
+    width: 50px;
+    height: 40px;
+    border: none;
+    background-color: rgba(189, 219, 239, 0.0);
+}
+
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    line-height: 80px;
+    width: 500px;
+}
+.nav > li{
+    margin-left: 30px;
+}
+.nav2{
+    width: 400px;
+    display: flex;
+    justify-self: flex-end;
+    line-height: 40px;
+    margin-top: 80px;
+    margin-left: -270px;
+}
+.nav2 > li{
+    margin-left: 30px;
+}
+
+.intro_text{
+    width: 100%;
+    height: 450px;
+    background-color: rgba(189, 219, 239, 0.5);
+}
+.mavel_text{
+    width : 250px;
+    height: 100px;
+    margin-left: 600px;
+    padding-top: 200px;
+}
+.mavel_text > li > a{
+    border: 0.5px solid #000;
+}
+.mavel_image > li> .ironman{
+    margin: -230px auto auto 1000px;
+}
+.mavel_image > li> .thor{
+    margin: -500px auto auto 1180px;
+}
+.mavel_image > li> .deadpool{
+    margin: -200px auto auto 1050px;
+}
+.main_text0{
+    width: 100%;
+    height: 250px;
+    background-color: rgba(236, 230, 204, 0.5);
+}
+.icons{
+    width: 1000px;
+    height: 200px;
+    margin:auto;
+}
+.all_prod{
+    display: flex;
+}
+.all_prod > .box{
+    flex: 1;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top:50px;
+    border: none;
+    background-color: rgba(0, 0, 0,0.1);
+}
+.all_prod > div > li{
+    margin-top: 25px;
+    margin-left: 22px;
+}
+.box > div {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: gray;
+}
+.nemo1{
+    margin: 25px 20px auto 35px;
+}
+.nemo2{
+    margin: -50px 10px auto 86px;
+}
+.nemo3{
+    margin: 1px auto auto 34px;
+}
+.nemo4{
+    margin: -50px 10px auto 86px;
+}
+
+.logo{
+    width: 120px;
+    height: 90px;
+}
+.prod_text{
+    display: flex;
+    font-size: 16pt;
+    width: 1000px;
+    height: 50px;
+    margin:auto;
+}
+.prod_text > a {
+    flex:1;
+    text-align: center;
+    margin-top: 10px;
+}
+.header_menu{
+    width: 800px;
+    height: 60px;
+    margin-top: 40px;
+    margin-left: 350px;
+}
+.header_contents {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 60px;
+    font-size: 16pt;
+}
+.header_contents > li {
+    flex : 1;
+    margin-left: 10px;
+}
+.sub_text0{
+    width: 100%;
+    height: 700px;
+    background-color: rgba(236, 230, 204, 0.5);
+}
+.sub_contents{
+    display: flex;
+    width: 100%;
+    height: 600px;
+    margin: auto;
+}
+.sub_contents1{
+    width: 300px;
+    height: 400px;
+    margin-left: 200px;
+    text-align: center;
+    line-height: 300px;
+    font-size: 16pt;
+}
+.best_figure{
+    display: flex;
+}
+.best{
+    width: 350px;
+    height: 400px;
+    margin: 100px 30px auto 20px;
+}
+.best_figure_text{
+    display: flex;
+    width: 1200px;
+    height: 125px;
+    margin-left: 580px;
+    margin-top:-100px;
+}
+.best_figure_text > .best1{
+    margin-top: 30px;
+    margin-right: 50px;
+    line-height: 50px;
+    border: 2px solid rgba(250, 132, 9, 0.8);
+    border-radius: 10px;
+}
+.best_figure_text > .best2,
+.best_figure_text > .best3{
+    margin-top: 30px;
+    margin-left: 120px;
+    margin-right: 20px;
+    line-height: 50px;
+    border: 2px solid rgba(250, 132, 9, 0.8);
+    border-radius: 10px;
+}
+.main_bg{
+    display: flex;
+    width: 100%;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.side_menu{
+    width: 280px;
+    height: 800px;
+    margin-left: 60px;
+}
+.side_mypage{
+    width: 280px;
+    height: 50px;
+    margin-top: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.side_mypage > span {
+    margin-left: 20px;
+    font-size: 14pt;
+    line-height: 50px;
+}
+.side_contents{
+    flex: none;
+    width: 280px;
+    height: 200px;
+}
+.side_contents > li {
+    padding-top: 5px;
+    padding-left: 20px;
+}
+.main_menu{
+    width: 1200px;
+    height: 800px;
+}
+.main_name{
+    width: 200px;
+    height: 50px;
+    margin : 20px auto auto auto;
+}
+.main_name > li{
+    font-size: 18pt;
+    line-height: 40px;
+    text-align: center;
+}
+.main_login{
+    width: 600px;
+    height: 500px;
+    margin: auto;
+}
+.nomal_login{
+    width: 400px;
+    height: 180px;
+    margin: 0px auto auto 100px;
+    padding-top: 100px;
+}
+.nomal_login_text{
+    width: 200px;
+    height: 50px;
+    margin: -100px auto auto auto;
+    font-size: 16pt;
+    text-align: center;
+    line-height: 45px;
+}
+
+.nomal_login > form > .login_info > li> span{
+    padding-left: 20px;
+    font-size: 12pt;
+    margin-right: 80px;
+}
+.nomal_login > form > .login_info > li> input{
+    width: 230px;
+}
+.nomal_login > form > .login_info > li> .password_info{
+    margin-left: -15px;
+}
+.login_submit {
+    width: 400px;
+    height: 80px;
+    margin: 30px auto auto auto;
+}
+.nomal_login > form >.login_submit > input {
+    width: 400px;
+    height: 80px;
+    font-size: 20pt;
+    background-color:rgba(189, 219, 239, 0.5);
+    border : none;
+    border-radius: 10px;
+
+}
+.kakao_login_text{
+    width: 200px;
+    height: 50px;
+    margin: -10px auto auto auto;
+    font-size: 16pt;
+    text-align: center;
+    line-height: 45px;
+
+}
+.kakao_login > ul > li > a >img{
+    width: 400px;
+    height: 80px;
+    margin: 10px auto auto 100px;
+}
+.buying_list{
+    width: 1200px;
+    height: 300px;
+
+}
+.selling_list{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+
+}
+.selling_list_name{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+
+}
+.buying_list_name{
+    width: 120px;
+    height: 40px;
+
+}
+.buying_list_name > span{
+    font-size: 14pt;
+    line-height: 20px;
+
+}
+.selling_list_name > span{
+    font-size: 14pt;
+    line-height: 20px;
+}
+.buying_area{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    overflow: auto;
+}
+.buying_table{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+.buying_table thead{
+    position: sticky;
+    top: 0px;
+    background-color: rgba(189, 219, 239, 1);
+}
+.buyed_area{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    overflow: auto;
+}
+.buyed_table{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+.buyed_table thead{
+    position: sticky;
+    top: 0px;
+    background-color: rgba(189, 219, 239, 1);
+}
+.selling_area{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    overflow: auto;
+}
+.admin_input_area{
+    width: 550px;
+    height: 300px;
+    margin: auto;
+
+}
+.admin_input_submit{
+    width: 550px;
+    height: 50px;
+}
+.admin_input_submit > input{
+    width: 150px;
+    height: 30px;
+    margin: 15px 150px auto 200px;
+    line-height: 20px;
+    background-color: rgba(189, 219, 239, 0.5);
+    border: none;
+}
+.selling_table{
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+.selling_table thead{
+    position: sticky;
+    top: 0px;
+    background-color: rgba(189, 219, 239, 1);
+}
+td{
+    padding: 5px;
+}
+.inp{
+    background-color: rgba(250, 0, 0, 0.1);
+}
+#prod_time{
+    width: 154px;
+}
+#evaluation_price{
+    width: 154px;
+}
+.selled_area{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    overflow: auto;
+}
+.selled_table{
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+.selled_table thead{
+    position: sticky;
+    top: 0px;
+    background-color: rgba(189, 219, 239, 1);
+}
+.point_statement_table{
+    width: 1000px;
+    margin: auto;
+    border: 1px solid #000;
+    text-align: center;
+}
+.buyed_list{    
+    width: 1200px;
+    height: 300px;
+    margin-top: 50px;
+}
+.selled_list{    
+    width: 1200px;
+    height: 300px;
+    margin-top: 50px;
+}
+.mypoint{
+    display: flex;
+    width: 500px;
+    height: 100px;
+    margin: 100px auto auto auto;
+}
+.mypoint > li {
+    margin: 30px 10px auto 30px;
+    font-size: 16pt;
+}
+.mypoint > button{
+    width: 50px;
+    height: 30px;
+    border: 1 solid rgba(0, 0, 0, 0.5);
+    margin: 32px 170px auto auto;
+}
+.point_statement_name{
+    width: 150px;
+    height: 40px;
+    margin: 50px;
+}
+.point_statement_name > li{
+    font-size: 16pt;
+}
+.point_statement{
+    width: 1100px;
+    height: 380px;
+    margin: -40px auto 30px 50px;
+}
+
+.main_content{
+    display: flex;
+    margin-top: 10px;
+    width: 1200px;
+    height: 700px;
+}
+.contents_menu {
+    width: 200px;
+    height: 500px;
+    margin-top: 15px;
+    margin-left: 300px;
+}
+.contents_menu > li {
+    margin-top: 40px;
+    font-size: 13pt;
+}
+.hidden {
+    display: none;
+}
+.contents_menu_input{
+    width: 400px;
+    height: 500px;
+    margin-top: 15px;
+}
+.contents_menu_input > input{
+    margin-top: 42px;
+    margin-left: 10px;
+    width: 300px;
+}
+.contents_menu_input > textarea{
+    margin-top: 40px;
+    margin-left: 10px;
+    width: 300px;
+    resize: none;
+}
+.contents_menu_submit{
+    width: 600px;
+    height: 50px;
+    margin-top: -320px;
+    margin-left: 300px;
+    text-align: center;
+}
+.contents_menu_submit > input{
+    width: 100px;
+    height: 30px;
+    margin-top: -30px;
+    background-color:  rgba(189, 219, 239, 0.5);
+}
+.login_form{
+    margin : 40px 400px auto 400px;
+}
+.login_form_element{
+    margin: 5px 70px;
+    /* background-color: orange; */
+    padding: 5px;
+
+}
+.login_form_element > input{
+    width: 250px;
+    /* background-color: orange; */
+    padding: 2px;
+    margin: 1px;
+}
+.join_form{
+    margin : 40px 400px auto 400px;
+}
+.join_form_element{
+    margin: 7px 30px;
+}
+#mem_email{
+    width: 253px;
+}
+#idCheckResult{
+    font-size: 12pt
+}
+.join_form_element > input{
+    width: 300px;
+    padding: 2px;
+    margin: 1px;
+} 
+.prod_list{
+    width: 1280px;
+    height: 100%;
+}
+.list_name{
+    width: 250px;
+    height: 40px;
+    margin-top: 15px;
+}
+.list_name > li{
+    font-size: 16pt;
+    line-height: 30px;
+    text-align: center;
+}
+.list_contents{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    overflow: auto;
+}
+.list_table{
+    width: 99%;
+    margin: 10px;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+.list_table thead{
+    position: sticky;
+    top: 0px;
+    background-color: rgba(189, 219, 239, 1);
+}
+.Urgency_list{
+    width: 1280px;
+    height: 100%;
+}
+/* ================================================ */
+/* 회원가입 페이지 Join class 기본 이름 join_ (id, class 명은 원래 붙여진 것 사용)*/
+
+/* 회원가입 폼 html 순서대로*/
+.join_form{
+    margin : 40px 400px auto 400px;
+}
+.join_form_element{
+    margin: 7px 30px;
+}
+#mem_email{
+    width: 253px;
+}
+#idCheckResult{
+    font-size: 12pt
+}
+.join_form_element > input{
+    width: 300px;
+    padding: 2px;
+    margin: 1px;
+}  
+
+/* ================================================ */
+/* 멤버판매등록 페이지 Prod_Regi_Member 기본 이름 prm_ (id, class 명은 원래 붙여진 것 사용)*/
+
+#prm_name{
+    width: 250px;
+    margin: auto;
+    padding: auto 200px;
+    
+}
+.prm_element{
+    width: 300px;
+    margin: 10px 450px;
+}
+.prm_table{
+    width: 380px;
+    padding: 50px;
+    text-align: center;
+    
+}
+.prm_table td{
+    padding: 3px;
+}
+
+.prm_btn input{
+    width: 50px;
+    line-height: normal;
+    font-size: 13px;
+    font-weight: 200;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;  
+} 
+
+.prm_detail{
+    margin-top: 10px;
+    font-size: 10px;
+}
+#prm_detail1{
+    font-weight: lighter;
+}
+#prm_detail2{
+    font-weight: bold;
+    color: red;
+}
+/* ================================================ */
+/* 고객센터 class 기본 이름은 post_ */
+
+.post_main_content{
+	    display: flex;
+    margin-top: 10px;
+    width: 1200px;
+    height: 700px;
+	overflow: auto;
+}
+.post_table {
+    margin:auto;
+    font-size: 13px;
+    width: 1000px;
+    border: 2px solid #000;
+    text-align: center;
+  }
+
+  /* 테이블 너비 설정 */
+.post_table .post_title {
+    width: 75%;
+    
+}
+.post_table .mem_num{
+    width: 8%;
+}
+
+.post_table .post_num,
+.post_table .post_date,
+.post_table .delete {
+    width: 5%;
+}
+
+/* 게시글 제목 왼쪽 정렬 */
+  .post_table tbody th {
+    padding-left: 28px;
+    padding-right: 14px;
+    border-top: 1px solid #000;
+    text-align: left;
+  }
+
+
+/* 게시판 테이블 내부 간격 */
+.post_table th, .post_table td {
+    padding: 10px;
+}
+
+/* 버튼 설정 */
+.post_btn {
+    margin-top: 10px;
+    margin-left: 84%;
+    padding: 2px 25px;
+    font-size: 13px;
+    font-weight: 200;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ================================================ */
+/* 글쓰기 PostInsert class 기본 이름은 form_ */
+
+.form_title{
+    width: 70%;
+    margin: 5px 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: transparent;
+    padding: 2px;
+
+}
+.form_mem_num{
+    width: 70%;
+    margin: 0px 150px;
+    
+}
+.form_con{
+    width: 70%;
+    margin: 0px 150px 10px 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 300px;
+    resize: none;
+    background: transparent;
+    /* margin: 2px; */
+    padding: 2px;
+
+}
+.form_btn{
+    width: auto;
+    height: 30px;
+    display: flex;
+}
+
+.form_btn_s{
+    padding: 2px 15px;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;
+}
+.form_btn_e{
+    padding: 2px 15px;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+/* ================================================ */
+/* 작성된 게시글 보는 페이지 PostSelectOne 기본이름 postSO_ */
+.postSO{
+    margin: 5px 100px 5px 100px;
+}
+
+.postSO_element{ 
+    width: 95%;
+    margin: auto;
+    padding-left: 70px;
+}
+
+.postSO_con{
+    display: inline;
+    margin: 100px;
+}
+.postSO_con input{
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 4px;  
+    margin: 2px;
+    padding: 2px;
+    width: 70%;
+}
+
+#postSO_con_con1{
+    height: 300px;
+}
+
+.postSO_btn{
+    margin: 5px auto 5px 680px;  
+    padding: 2px 15px;
+    font-size: 13px;
+    font-weight: 50;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/* ================================================ */
+/* 멤버판매등록 페이지 Prod_Regi_Member 기본 이름 prm_ (id, class 명은 원래 붙여진 것 사용)*/
+
+#prm_name{
+    width: 250px;
+    margin: auto;
+    padding: auto 200px;
+    
+}
+.prm_element{
+    width: 300px;
+    margin: 10px 450px;
+}
+.prm_table{
+    width: 380px;
+    padding: 50px;
+    text-align: center;
+    
+}
+.prm_table td{
+    padding: 3px;
+}
+
+.prm_btn input{
+    width: 50px;
+    line-height: normal;
+    font-size: 13px;
+    font-weight: 200;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;  
+} 
+
+.prm_detail{
+    margin-top: 10px;
+    font-size: 10px;
+}
+#prm_detail1{
+    font-weight: lighter;
+}
+#prm_detail2{
+    font-weight: bold;
+    color: red;
+}
+/* ================================================ */
+/* 경매확인 페이지 AuctionConfirm 기본 이름 auc_ (id, class 명은 원래 붙여진 것 사용)*/
+.list_name >li{
+    width: 300px;
+    margin: auto 500px;
+}
+
+.auc_list_table{
+    width: 99%;
+    margin: 10px;
+    border: 1px solid #000 ;
+    text-align: center;
+}
+

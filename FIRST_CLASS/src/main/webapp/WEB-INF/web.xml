@@ -160,24 +160,6 @@
 		<description></description>
 		<servlet-class>com.smhrd.controller.updateFailBidService</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>updatePoService</servlet-name>
-		<display-name>updatePoService</display-name>
-		<description></description>
-		<servlet-class>com.smhrd.controller.updatePoService</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>updateRealPoService</servlet-name>
-		<display-name>updateRealPoService</display-name>
-		<description></description>
-		<servlet-class>com.smhrd.controller.updateRealPoService</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>nowPoService</servlet-name>
-		<display-name>nowPoService</display-name>
-		<description></description>
-		<servlet-class>com.smhrd.controller.nowPoService</servlet-class>
-	</servlet>
 	<servlet-mapping>
 		<servlet-name>Test</servlet-name>
 		<url-pattern>/Test</url-pattern>
@@ -281,17 +263,5 @@
 		<servlet-mapping>
 			<servlet-name>updateFailBidService</servlet-name>
 			<url-pattern>/updateFailBidService</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>updatePoService</servlet-name>
-			<url-pattern>/updatePoService</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>updateRealPoService</servlet-name>
-			<url-pattern>/updateRealPoService</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>nowPoService</servlet-name>
-			<url-pattern>/nowPoService</url-pattern>
 		</servlet-mapping>
 </web-app>

@@ -1,27 +1,29 @@
 <%@page import="com.smhrd.model.BidVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.smhrd.model.ProdVO"%>
 <%@page import="com.smhrd.model.ProdDAO"%>
 <%@page import="com.smhrd.model.MemVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" errorPage="ErrorPage.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="assets/css/main.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="AllProdStyle.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<style type="text/css">
-td {
-	text-align: center;
-}
-</style>
-
+<title>상품 상세</title>
 </head>
 <body>
 	<%
+	MemVO info = (MemVO) session.getAttribute("info");
 	int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 
 	// 이전 페이지 지정(로그인 후 돌아올 곳 지정)
@@ -32,7 +34,6 @@ td {
 	session.setAttribute("prevPage", prevPage);
 	session.setAttribute("prod_num", prod_num);
 
-	MemVO info = (MemVO) session.getAttribute("info");
 
 	if (info == null) {
 		response.sendRedirect("Login.jsp");
@@ -44,87 +45,147 @@ td {
 	Date date = vo.getProd_time();
 	Date now = new Date();	
 	
-	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이	
+	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이
+	
 	%>
-	<h1>
-		<a href="main.jsp">메인페이지로 이동</a>
-	</h1>
-	<h1>상품 판매 페이지</h1>
-	<table border="1" width="400px">
-		<tr>
-			<td>상품사진</td>
-			<td style="inline-height: 0"><img src="<%=vo.getProd_img()%>"
-				width="300px" height="300px" style="margin: 0; padding: 0"></td>
-		</tr>
-		<tr>
-			<td>상품이름</td>
-			<td><%=vo.getProd_name()%></td>
-		</tr>
-		<tr>
-			<td>마감시간</td>
-			<td id="remainTime">남은시간이 표시됩니다.</td>
-		</tr>
-		<tr>
-			<td>전문가의견</td>
-			<td><%=vo.getProd_opinion()%></td>
-		</tr>
-		<tr>
-			<td>경매시작가</td>
-			<td><%=vo.getProd_price()%></td>
-		</tr>
-		<tr>
-			<td>현재입찰가</td>
-			<%-- <td><%=vo.getProd_cur()%></td> --%>
-			<td id="prod_cur"><%=vo.getProd_cur()%></td>
-		</tr>
-		<tr>
-			<td>즉시구매가</td>
-			<td id="prod_imme"><%=vo.getProd_imme()%></td>
-		</tr>
-		<tr>
-			<td rowspan="4">입찰</td>
-			<td><input type="text" id="bid">
-				<button type="button" id="bidCheck">입찰가능?</button></td>
-		</tr>
-		<tr>
-			<td><span id="bidCheckResult">입찰 가능시 아래 버튼이 활성화됩니다.</span></td>
-		</tr>
-		<tr>
-			<td>
-				<button type="button" id="bidCommit" disabled>입찰확정</button>
-			</td>
-		</tr>
-		<tr>
-			<td><span id="bidCommitResult">입찰 성공여부가 출력됩니다.</span></td>
-		</tr>
+	<div class="intro_bg">
+		<div class="header">
+			<div class="main">
+				<a href="main.jsp">피베이</a>
+			</div>
+			<div class="search_area">
+				<form action="searchResult.jsp">
+					<input type="text" name="search" placeholder="검색어를 입력하세요"
+						onKeypress="javascript:if(event.keyCode==13) {enterkey()}">
+					<div class="search_icon">
+						<input type="submit" class="searach_submit" value="검색">
+					</div>
+				</form>
+			</div>
+			<%
+				if (info != null) {%>
+			<ul class="nav">
+				<li><%=info.getMem_grade()%>
+				<li>
+				<li><%=info.getMem_name()%>님</li>
+				<li><a href="MemberUpdate.jsp">마이페이지</a></li>
+				<li><a href="LogoutService">로그아웃</a></li>
+			</ul>
+			<%if (info.getMem_email().equals("admin")) {%>
+			<ul class="nav2">
+				<li><a href="MemberListService">회원목록</a></li>
+				<li><a href="ProdRegi_Admin.jsp">판매등록</a></li>
+				<li><a href="AuctionConfirm.jsp">경매확인</a></li>
+			</ul>
+			<% } %>
+			<%
+				} else {
+				%>
+			<ul class="nav">
+				<li><a href="Login.jsp">로그인</a></li>
+				<li><a href="Join.jsp">회원가입</a></li>
+			</ul>
+			<%
+				}
+				%>
+		</div>
+		<div class="header_menu">
+			<div class="header_contents">
+				<li><a href="PopProd.jsp">인기 경매</a></li>
+				<li><a href="UrgencyProd.jsp">급처 경매</a></li>
+				<li><a href="ProdRegi_Member.jsp">판매 등록</a></li>
+				<li><a href="PostMain.jsp">문의 게시판</a></li>
+			</div>
+		</div>
+	</div>
 
-	</table>
+	
+
+	<div class="detail">
+		<span>➡<%=vo.getProd_name()%></span> <a href="AllProd.jsp"
+			class="total-button" style="float: right; margin-top: 10px;">목록보기</a>
+		<br>
+		<div class="wrap">
+			<div class="left-wrap inner-wrap">
+				<div class="detail_image">
+					<img src="<%=vo.getProd_img()%>">
+				</div>
+			</div>
+			<div class="right-wrap inner-wrap">
+				<div class="detail-prod-data">
+					<div class="detail_finish">
+						<!-- 마감시간 -->
+						<div class="detail-finish-box">
+							<span style="font-size: 20px; vertical-align: top;">남은시간 :
+							</span> <span id="remainTime">남은시간이 표시됩니다.</span>
+						</div>
+					</div>
+					<div class="detail_name">
+						<!-- 상품명 -->
+						<%=vo.getProd_name()%>
+					</div>
+					<div class="detail_Prodop">
+						<!-- 전문가의견 -->
+						<%=vo.getProd_opinion()%>
+					</div>
+					<div class="detail_Prodprice">
+						<!-- 경매시작가 -->
+						<div class="detail-price-inner">
+							<span>경매 시작가</span> <span style="float: right;"><%=vo.getProd_price()%>
+								원</span>
+						</div>
+					</div>
+					<div class="detail_Prodcur">
+						<!-- 현재입찰가 -->
+						<div class="detail-bidcost-inner">
+							<!-- 							<span id="prod_cur">현재 입찰가</span> -->
+							<span>현재 입찰가</span> <span style="float: right;"><%=vo.getProd_cur()%>
+								원</span>
+						</div>
+					</div>
+					<div class="prod_imme">
+						<!-- 즉시구매가 -->
+						<div class="detail-current-inner">
+							<span>즉시 구매가</span> <span
+								style="float: right; padding-left: 6px;">원</span> <span
+								style="float: right;" id="prod_imme2"> <%=vo.getProd_imme()%></span>
+						</div>
+					</div>
+					<div class="bidding-wrap">
+						<div class="detail-bidding-left">
+							<span class="bidding-name">입찰</span>
+						</div>
+						<div class="detail-bidding-right">
+							<div>
+								<input type="text" id="bid" placeholder="입찰가 입력">
+								<button type="button" id="bidCheck">입찰가능?</button>
+							</div>
+							<hr class="detail-bidding-hr">
+							<span id="bidCheckResult">입찰 가능시 아래 버튼이 활성화됩니다.</span><br>
+							<hr class="detail-bidding-hr">
+							<button type="button" class="total-button success-button"
+								id="bidCommit" disabled>입찰확정</button>
+							<br>
+							<hr class="detail-bidding-hr">
+							<span id="bidCommitResult">입찰 성공여부가 출력됩니다.</span><br>
+							<hr class="detail-bidding-hr">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		var bid = 0;
 		var prod_imme = 0;
 		var value = "";
-		var nowPo;
 		var interval = setInterval(calRemain, 1000);
 		
 		$(document).ready(function() {
 			console.log("문서 로드 완료");
 			calRemain();
 		});
-		
- 		setInterval(nowPo, 1000);
-		function nowPo(){
-			$.ajax({
-				url : "nowPoService",
-				method : "POST",
-				dataType : "JSON",
-				success : resultPo,
-				error : errFun
-			});
-		}		
-		function resultPo(data){
-			nowPo=data[0].mem_po;
-		} 
 
 		function calRemain() {
 			$.ajax({
@@ -161,10 +222,9 @@ td {
 
 		$('#bidCheck').click(function() {
 			bid = Number($('#bid').val());
-			prod_imme = Number($("#prod_imme").text());
+			prod_imme = Number($('#prod_imme2').text());
 			console.log(bid + '유효 검사 / 버튼 클릭');
 			console.log("현재시간 : "+<%=diffSec%>);
-
 			$.ajax({
 				url : "bidCheckService",
 				method : "POST",
@@ -174,32 +234,30 @@ td {
 					console.log("통신성공");
 					console.log(data.bidCheck);
 					
-					if(value!="경매종료"){
-						if(bid<=nowPo){
-							if (data.bidCheck == "OK") {
-								if (prod_imme >= bid) {
+					if(value!="경매종료"){ //경매 중
+						if(bid<=<%=info.getMem_po()%>){ //내가 가진 포인트가 입력한 값보다 크거나 같을 때 
+							if (data.bidCheck == "OK") { //입찰 가능할 때 
+								if (prod_imme >= bid) { // 입력한 값이 즉시 구매가보다 작을 때
 									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능!");
 									$("#bidCheckResult").css("color", "black");
 									$("#bidCommit").removeAttr("disabled");
 									$("#bidCheck").attr("disabled", true);
-									$("#bid").attr("readonly",true);
-									updatePo();
-								} else {
+								} else { //즉시 구매가가 입력한 값보다 작을 때
 									$("#bidCheckResult").text("나같으면 즉시구매함 ㅋㅋ("+prod_imme+")");
 									$("#bidCheckResult").css("color", "red");
 									$("#bidCommit").attr("disabled", "disabled");
 								}
-							} else {
+							} else { //입찰 안될 때 
 								$("#bidCheckResult").text("더 써보세요...");
 								$("#bidCheckResult").css("color", "red");
 								$("#bidCommit").attr("disabled", "disabled");
 							}
-						} else {
-							$("#bidCheckResult").text("보유한 포인트가 부족합니다!\n("+nowPo+")원 보유중!");
+						} else { //내가 가진 포인트가 입력한 값보다 작을 때 
+							$("#bidCheckResult").text("보유한 포인트가 부족합니다!\n("+<%=info.getMem_po()%>+")원 보유중!");
 							$("#bidCheckResult").css("color", "red");
 							$("#bidCommit").attr("disabled", "disabled");
 						}
-					} else {
+					} else { //경매 종료
 						$("#bidCheckResult").text("경매 끝났어요~");
 						$("#bidCheckResult").css("color", "red");
 						$("#bidCommit").attr("disabled", "disabled");						
@@ -227,9 +285,7 @@ td {
 						$("#bidCommitResult").text("입찰성공!");
 						$("#bidCommitResult").css("color","black");
 						$("#bidCheck").attr("disabled", false);
-						$("#bid").attr("readonly",false);
 						$("#bidCommit").attr("disabled", "disabled");
-						updateRealPo();
 					} else {
 						$("#bidCommitResult").text("입찰실패...");
 						$("#bidCommitResult").css("color","red");
@@ -250,39 +306,23 @@ td {
 				success : resultCur,
 				error : errFun
 			});
-		}		
+		}
+		
 		function resultCur(data){
 			var nowCur="";
 			nowCur+=data[0].prod_cur;
 			$("#prod_cur").text(nowCur);
 		}
-		// 포인트 얼마 까일지 계산하는 곳
- 		function updatePo(){
-			$.ajax({
-				url : "updatePoService",
-				method : "POST",
-				data : {"bid_price":bid},
-				dataType : "JSON",
-				success:function(){
-					console.log("통신성공");
-				},
-				error:errFun
-			});
-		}
- 		// 실제 포인트 차감하는 곳
- 		function updateRealPo(){
- 			$.ajax({
- 				url:"updateRealPoService",
- 				method:"POST",
- 				dataType:"JSON",
- 				success:function(){
- 					console.log("통신성공");
- 				},
- 				error:errFun
- 			});
- 		}
- 		
 	</script>
 	<%}%>
 </body>
+<script type="text/javascript">
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+
+			// 엔터키가 눌렸을 때 실행하는 반응
+			$("#form").submit();
+		}
+	}
+</script>
 </html>

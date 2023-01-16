@@ -1,11 +1,19 @@
 <%@page import="com.smhrd.model.MemVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" errorPage="ErrorPage.jsp"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>First_Class_Web_Page</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<%
@@ -13,64 +21,161 @@
 	String prevPage = request.getRequestURI().toString();
 	prevPage = prevPage.substring(13);
 	session.setAttribute("prevPage", prevPage);
-	
+
 	// 회원 정보 세션에서 가져오기
-	MemVO info = (MemVO)session.getAttribute("info");
+	MemVO info = (MemVO) session.getAttribute("info");
 	%>
-	<h1> <a href="main.jsp">메인페이지로 이동</a></h1>
-	<!-- 로그인 전 -> 로그인 탭 출력 -->
-	<!-- 로그인 후 -> 로그아웃/개인정보수정 탭 출력 -->
-	<div>
-		<%if (info != null) {%>
-		<ul>
-			<li>
-				<h5>
-					등급:<%=info.getMem_grade()%>
-					이메일:<%=info.getMem_email()%>
-				</h5>
-			</li>
-			<li><a href="MemberUpdate.jsp">마이페이지</a></li>
-			<li><a href="LogoutService">로그아웃</a></li>
-		</ul>
-			
-		<%} else {%>
-		<ul>
-			<li> <h5>로그인해주세요</h5> </li>
-			<li><a href="Login.jsp">로그인</a></li>
-			<li><a href="Join.jsp">회원가입</a></li>
-		</ul>
-		<%}%>
-	</div>
-	<div> 
-		<form action="searchResult.jsp" method="get">
-			검색 :
-			<input type="text" name="search" placeholder="검색할 상품의 이름을 입력">
-			<input type="submit" value="검색">
-		</form> 
-	</div>
-	<div>
-		<%if (info != null) {%>
-			<%if (info.getMem_email().equals("admin")) {%>
-				<a href="MemberListService">회원목록</a>
-				<a href="ProdRegi_Admin.jsp">판매등록</a>
-				<a href="AuctionConfirm.jsp">경매확인</a>
-			<%} else {%>
-				<a href="ProdRegi_Member.jsp">판매등록</a>
-			<%}
-		}%>
-		<a href="PopProd.jsp">인기 경매</a>
-		<a href="UrgencyProd.jsp">급처 경매</a>
-		<a href="PostMain.jsp">문의게시판</a>
-	</div>
-	
-	<div class="container">
-		<a href="AllProd.jsp">전체 상품</a>
-		<a href="CateProd.jsp?cate_num=12">MARVEL</a>
-		<a href="CateProd.jsp?cate_num=4">디즈니</a> 
-		<a href="CateProd.jsp?cate_num=6">귀멸의 칼날</a>
-		<a href="CateProd.jsp?cate_num=8">건담</a>
-		<a href="CateProd.jsp?cate_num=10">원피스</a>
-		<a href="CateProd.jsp?cate_num=2">기타</a>
+	<div class="wrap">
+		<div class="intro_bg">
+			<div class="header">
+				<div class="main">
+					<a href="main.jsp">피베이</a>
+				</div>
+				<div class="search_area">
+					<form action="searchResult.jsp">
+                        <input type ="text" name="search" placeholder="검색어를 입력하세요"  onKeypress="javascript:if(event.keyCode==13) {enterkey()}">
+                    	<div class="search_icon">
+                            <input type="submit" class="searach_submit" value="검색">
+                        </div>
+                    </form>
+				</div>
+				<%
+				if (info != null) {%>
+				<ul class="nav">
+					<li><%=info.getMem_grade()%>
+					<li>
+					<li><%=info.getMem_name()%>님</li>
+					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
+					<li><a href="LogoutService">로그아웃</a></li>
+				</ul>
+					<%if (info.getMem_email().equals("admin")) {%>
+					<ul class ="nav2">
+                    <li><a href="MemberListService">회원목록</a></li>
+                    <li><a href="ProdRegi_Admin.jsp">판매등록</a></li>
+                    <li><a href="AuctionConfirm.jsp">경매확인</a></li>
+                </ul><% } %>
+				<%
+				} else {
+				%>
+				<ul class="nav">
+					<li><a href="Login.jsp">로그인</a></li>
+					<li><a href="Join.jsp">회원가입</a></li>
+				</ul>
+				<%
+				}
+				%>
+			</div>
+			<div class="header_menu">
+				<div class="header_contents">
+					<li><a href="PopProd.jsp">인기 경매</a></li>
+					<li><a href="UrgencyProd.jsp">급처 경매</a></li>
+					<li><a href="ProdRegi_Member.jsp">판매 등록</a></li>
+					<li><a href="PostMain.jsp">문의 게시판</a></li>
+				</div>
+			</div>
+		</div>
+		<div class="intro_text">
+			<div class="mavel_text">
+				<li>
+					<h4>한정판 마블 피규어</h4>
+				</li>
+				<li>
+					<h4>퍼스트에서</h4>
+				</li>
+				<li><a href="AllProd.jsp">전체상품보기</a></li>
+			</div>
+			<div class="mavel_image">
+				<li><img src="image/ironman PNG.png" class="ironman"
+					width="280px;" height="280px"></li>
+				<li><img src="image/thor PNG.png" class="thor" width="280px;"
+					height="280px"></li>
+				<li><img src="image/deadpool PNG.png" class="deadpool"
+					width="280px;" height="280px"></li>
+			</div>
+		</div>
+		<div class="main_text0">
+			<div class="icons">
+				<div class="all_prod">
+					<div class="box">
+						<li><a href="AllProd.jsp"><img style = "width : 85.5%;"
+								src="image/allProd_logo.png" class="logo"></a></li>						
+					</div>
+					<div class="box">
+						<li><a href="CateProd.jsp?cate_num=12"><img
+								src="image/marvel_logo.png" class="logo"></a></li>
+					</div>
+					<div class="box">
+						<li><a href="CateProd.jsp?cate_num=4"><img
+								src="image/disney_logo.png" class="logo"></a></li>
+					</div>
+					<div class="box">
+						<li><a href="CateProd.jsp?cate_num=6"><img
+								src="image/demon_slayer_logo.png" class="logo"></a></li>
+					</div>
+					<div class="box">
+						<li><a href="CateProd.jsp?cate_num=8"><img
+								src="image/bandai_logo.png" class="logo"></a></li>
+					</div>
+					<div class="box">
+						<li><a href="CateProd.jsp?cate_num=10"><img
+								src="image/onepice_logo.png" class="logo"></a></li>
+					</div>
+				</div>
+			</div>
+			<div class="prod_text">
+				<a href="AllProd.jsp">
+					<li>전체 상품</li>
+				</a> <a href="CateProd.jsp?cate_num=12">
+					<li>MARVEL</li>
+				</a> <a href="CateProd.jsp?cate_num=4">
+					<li>디즈니</li>
+				</a> <a href="CateProd.jsp?cate_num=6">
+					<li>귀멸의칼날</li>
+				</a> <a href="CateProd.jsp?cate_num=8">
+					<li>건담</li>
+				</a> <a href="CateProd.jsp?cate_num=10">
+					<li>원피스</li>
+				</a>
+			</div>
+		</div>
+		<div class="sub_text0">
+			<div class="sub_contents">
+				<div class="sub_contents1">
+					<span>현재 인기 경매 피규어</span>
+				</div>
+				<div class="best_figure">
+					<li><a href="#"><img src="image/onepice_ace.png"
+							class="best"></a></li>
+					<li><a href="#"><img src="image/ironman1.png" class="best"></a>
+					</li>
+					<li><a href="#"><img src="image/onepice_whitebeard.png"
+							class="best"></a></li>
+				</div>
+			</div>
+			<div class="best_figure_text">
+				<div class="best1">
+					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
+							입찰자 x명</span></a>
+				</div>
+				<div class="best2">
+					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
+							입찰자 x명</span></a>
+				</div>
+				<div class="best3">
+					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
+							입찰자 x명</span></a>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+
+			// 엔터키가 눌렸을 때 실행하는 반응
+			$("#form").submit();
+		}
+	}
+</script>
 </html>
