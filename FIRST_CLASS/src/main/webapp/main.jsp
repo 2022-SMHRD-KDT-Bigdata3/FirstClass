@@ -137,34 +137,8 @@
 				</a>
 			</div>
 		</div>
-		<div class="sub_text0">
-			<div class="sub_contents">
-				<div class="sub_contents1">
-					<span>현재 인기 경매 피규어</span>
-				</div>
-				<div class="best_figure">
-					<li><a href="#"><img src="image/onepice_ace.png"
-							class="best"></a></li>
-					<li><a href="#"><img src="image/ironman1.png" class="best"></a>
-					</li>
-					<li><a href="#"><img src="image/onepice_whitebeard.png"
-							class="best"></a></li>
-				</div>
-			</div>
-			<div class="best_figure_text">
-				<div class="best1">
-					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
-							입찰자 x명</span></a>
-				</div>
-				<div class="best2">
-					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
-							입찰자 x명</span></a>
-				</div>
-				<div class="best3">
-					<a href="#"><span>현재 가격 xxx원 즉시 구매가 xxx원</span><br> <span>현재
-							입찰자 x명</span></a>
-				</div>
-			</div>
+		<div class="sub_text0" style ="width: 100%; height:100px;">
+			
 		</div>
 	</div>
 </body>

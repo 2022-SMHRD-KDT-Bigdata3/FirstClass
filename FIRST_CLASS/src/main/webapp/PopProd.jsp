@@ -20,7 +20,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="AllProdStyle.css">
 </head>
 <body>
 	<%
@@ -32,7 +32,6 @@
 
 	Date now = new Date();
 	%>
-	<div class="wrap">
 		<div class="intro_bg">
 			<div class="header">
 				<div class="main">
@@ -71,7 +70,6 @@
 				}
 				%>
 			</div>
-
 			<div class="header_menu">
 				<div class="header_contents">
 					<li><a href="PopProd.jsp">인기 경매</a></li>
@@ -81,66 +79,54 @@
 				</div>
 			</div>
 		</div>
-		<div class="main_bg">
-			<div class="side_menu">
-				<div class="side_mypage">
-					<span>인기 경매</span>
-				</div>
-				<div class="side_contents">
-					<li><a href="CateProd.jsp?cate_num=12">Marvel</a></li>
-					<li><a href="CateProd.jsp?cate_num=4">디즈니</a></li>
-					<li><a href="CateProd.jsp?cate_num=6">귀멸의 칼날</a></li>
-					<li><a href="CateProd.jsp?cate_num=8">건담</a></li>
-					<li><a href="CateProd.jsp?cate_num=10">원피스</a></li>
-				</div>
-			</div>
-			<div class="prod_list">
-				<div class="list_name">
-					<li>인기 경매</li>
-				</div>
-				<div class="list_contents">
-					<table class="list_table">
-						<tr>
-							<td>상품 사진</td>
-							<td>상품명</td>
-							<td>급처 경매여부</td>
-							<td>마감 시간</td>
-							<td>현재 입찰가</td>
-							<td>즉시 구매가</td>
-							<td>입찰건수</td>
-							<td>이동</td>
-						</tr>
-						<%
+		<div class="grid-9">
+		<%
 		for (int i = 0; i < list.size(); i++) {
 			Date date = list.get(i).getProd_time();
 			SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 			String prod_time = SDF.format(date);
-
+                 
 			long diff = date.getTime() - now.getTime();
-			if (diff > 0) {
-		%>
-						<tr>
-							<td><img src="<%=list.get(i).getProd_img()%>" width="150px"
-								height="150px"></td>
-							<td><%=list.get(i).getProd_name()%></td>
-							<td><%=list.get(i).getBid_isUrgency()%></td>
-							<td><%=prod_time%></td>
-							<td><%=list.get(i).getProd_cur()%></td>
-							<td><%=list.get(i).getProd_imme()%></td>
-							<td><%=list.get(i).getBid_count()%></td>
-							<td><a href="ProdSale.jsp?prod_num=<%=list.get(i).getProd_num()%>">이동</a></td>
-						</tr>
-						<%
-		}
-		%>
-						<%
-		}
-		%>
-					</table>
+			
+			if (diff > 0) {%>
+				<div class = "All_Prod">
+					<div class = "big" align="center">
+						<div class = "top">
+							<a href="ProdSale.jsp?prod_num=<%=list.get(i).getProd_num()%>"><img class="prod-img" src="<%=list.get(i).getProd_img()%>"></a>
+						</div>
+						
+						<div class="name font-small">								
+							<%=list.get(i).getProd_name()%>
+						</div>
+								
+						<div class="bidurg font-small">
+							급처여부:<%=list.get(i).getBid_isUrgency()%>
+						</div>
+							
+						<div class="price font-small">
+							현재가:<%=list.get(i).getProd_cur()%>원 <br>
+							즉시구매가:<%=list.get(i).getProd_imme()%>원
+						</div>
+						
+						<div class="bid font-small">
+							입찰건수:<%=list.get(i).getBid_count()%>건 <br>
+						</div>
+							
+						<div class="time font-small" font-color="red">
+							<%=prod_time%>							
+						</div>	
+					</div>
 				</div>
-			</div>
+			<%}%>
+			
+		
+		<%
+		}
+		%>
 		</div>
-	</div>
+			
+
+	
 </body>
 <script type="text/javascript">
 	function enterkey() {

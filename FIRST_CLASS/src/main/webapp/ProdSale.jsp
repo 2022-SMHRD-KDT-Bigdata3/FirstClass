@@ -46,7 +46,7 @@
 	Date now = new Date();	
 	
 	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이
-	int mem_po = (int) session.getAttribute("realDecPo");
+/* 	int mem_po = (int) session.getAttribute("realDecPo"); */
 	%>
 	<div class="intro_bg">
 		<div class="header">
@@ -252,7 +252,7 @@
 					console.log(data.bidCheck);
 					
 					if(value!="경매종료"){ //경매 중
-						if(bid<=nowPoint || nowPoint-<%=mem_po%> >0){ //내가 가진 포인트가 입력한 값보다 크거나 같을 때 
+						if(bid<=nowPoint<%--  || nowPoint-<%=mem_po%> >0 --%>){ //내가 가진 포인트가 입력한 값보다 크거나 같을 때 
 							if (data.bidCheck == "OK") { //입찰 가능할 때 
 								if (prod_imme >= bid) { // 입력한 값이 즉시 구매가보다 작을 때
 									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능합니다!");
