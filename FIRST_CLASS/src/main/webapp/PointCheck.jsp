@@ -28,26 +28,33 @@
 				</div>
 				<div class="search_area">
 					<form action="searchResult.jsp">
-                        <input type ="text" name="search" placeholder="검색어를 입력하세요"  onKeypress="javascript:if(event.keyCode==13) {enterkey()}">
-                    	<div class="search_icon">
-                            <input type="submit" class="searach_submit" value="검색">
-                        </div>
-                    </form>
+						<input type="text" name="search" placeholder="검색어를 입력하세요"
+							onKeypress="javascript:if(event.keyCode==13) {enterkey()}">
+						<div class="search_icon">
+							<input type="submit" class="searach_submit" value="검색">
+						</div>
+					</form>
 				</div>
 				<%
-				if (info != null) {%>
+				if (info != null) {
+				%>
 				<ul class="nav">
 					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>
 				</ul>
-					<%if (info.getMem_email().equals("admin")) {%>
-					<ul class ="nav2">
-                    <li><a href="MemberListService">회원목록</a></li>
-                    <li><a href="ProdRegi_Admin.jsp">판매등록</a></li>
-                    <li><a href="AuctionConfirm.jsp">경매확인</a></li>
-                </ul><% } %>
+				<%
+				if (info.getMem_email().equals("admin")) {
+				%>
+				<ul class="nav2">
+					<li><a href="MemberListService">회원목록</a></li>
+					<li><a href="ProdRegi_Admin.jsp">판매등록</a></li>
+					<li><a href="AuctionConfirm.jsp">경매확인</a></li>
+				</ul>
+				<%
+				}
+				%>
 				<%
 				} else {
 				%>
@@ -92,10 +99,15 @@
 				<div class="mypoint">
 					<li>내 포인트</li>
 					<li><%=result%></li>
-					<button onclick="request_pay()" style="background-color: rgba(189, 219, 239, 1); border:none;">충전</button>
+				</div>
+				<div class="mypoint">
+					<input type="text" id="poChg" style=" width:200px; height:60px;font-size: 30pt">
+					<button onclick="request_pay()"
+						style="background-color: rgba(189, 219, 239, 1); border: none;">충전</button>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -112,15 +124,17 @@
 	var seconds = today.getSeconds(); // 초
 	var milliseconds = today.getMilliseconds();
 	var makeMerchantUid = hours + minutes + seconds + milliseconds;
+	
 
 	function request_pay() {
 		console.log("클릭");
+		var poChg = Number($("#poChg").val());
 		IMP.request_pay({
 			pg : 'html5_inicis',
 			pay_method : 'card',
 			merchant_uid : "ORD20180131-0000111",
 			name : '피베이',
-			amount : 10,
+			amount : poChg,
 			buyer_email : 'Iamport@chai.finance',
 			buyer_name : '아임포트 기술지원팀',
 			buyer_tel : '010-1234-5678',
@@ -134,6 +148,8 @@
 			}
 		});
 	}
+	
+	
 </script>
 <script type="text/javascript">
 	function enterkey() {
