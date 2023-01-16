@@ -653,13 +653,26 @@ td{
     width: 250px;
     margin: auto;
     padding: auto 200px;
-    
+}
+
+.prm_main_content{
+    display: flex;
+    margin-top: 10px;
+    width: 1200px;
+    height: 700px;
+    margin-left: 5%;
 }
 .prm_element{
-    width: 300px;
-    margin: 10px 450px;
+    width: 70%;
+    margin: 10px 10%;
+}
+
+.warnimg > img{
+   width: 100%;
+   margin-bottom: 10px;
 }
 .prm_table{
+   align: center;
     width: 380px;
     padding: 50px;
     text-align: center;
@@ -694,11 +707,11 @@ td{
 /* 고객센터 class 기본 이름은 post_ */
 
 .post_main_content{
-	    display: flex;
+       display: flex;
     margin-top: 10px;
     width: 1200px;
     height: 700px;
-	overflow: auto;
+   overflow: auto;
 }
 .post_table {
     margin:auto;
@@ -837,51 +850,6 @@ td{
     cursor: pointer;
 }
 
-
-/* ================================================ */
-/* 멤버판매등록 페이지 Prod_Regi_Member 기본 이름 prm_ (id, class 명은 원래 붙여진 것 사용)*/
-
-#prm_name{
-    width: 250px;
-    margin: auto;
-    padding: auto 200px;
-    
-}
-.prm_element{
-    width: 300px;
-    margin: 10px 450px;
-}
-.prm_table{
-    width: 380px;
-    padding: 50px;
-    text-align: center;
-    
-}
-.prm_table td{
-    padding: 3px;
-}
-
-.prm_btn input{
-    width: 50px;
-    line-height: normal;
-    font-size: 13px;
-    font-weight: 200;
-    background: transparent;
-    text-align: center;
-    cursor: pointer;  
-} 
-
-.prm_detail{
-    margin-top: 10px;
-    font-size: 10px;
-}
-#prm_detail1{
-    font-weight: lighter;
-}
-#prm_detail2{
-    font-weight: bold;
-    color: red;
-}
 /* ================================================ */
 /* 경매확인 페이지 AuctionConfirm 기본 이름 auc_ (id, class 명은 원래 붙여진 것 사용)*/
 .list_name >li{
@@ -895,4 +863,3 @@ td{
     border: 1px solid #000 ;
     text-align: center;
 }
-

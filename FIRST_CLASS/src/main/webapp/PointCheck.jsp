@@ -37,8 +37,7 @@
 				<%
 				if (info != null) {%>
 				<ul class="nav">
-					<li><%=info.getMem_grade()%>
-					<li>
+					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>
@@ -121,7 +120,7 @@
 			pay_method : 'card',
 			merchant_uid : "ORD20180131-0000111",
 			name : '피베이',
-			amount : 0,
+			amount : 10,
 			buyer_email : 'Iamport@chai.finance',
 			buyer_name : '아임포트 기술지원팀',
 			buyer_tel : '010-1234-5678',

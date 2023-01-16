@@ -41,8 +41,7 @@
 				<%
 				if (info != null) {%>
 				<ul class="nav">
-					<li><%=info.getMem_grade()%>
-					<li>
+					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>
@@ -102,8 +101,6 @@
 								<th>시작 입찰가</th>
 								<th>현재 입찰가</th>
 								<th>즉시 구매가</th>
-								<th>판매종료시간</th>
-								<th>이동</th>
 							</tr>
 						</thead>
 							<%
@@ -131,7 +128,7 @@
 					<div class="selling_list_name">
 						<span>완료된 경매</span>
 					</div>
-					<div>
+					<div class="selled_area">
 						<table class="selled_table">
 						<thead>
 							<tr>
@@ -139,20 +136,26 @@
 								<th>상품명</th>
 								<th>시작 입찰가</th>
 								<th>경매 낙찰가</th>
-								<th>종료 날짜</th>
-								<th>이동</th>
+								<th>낙찰자</th>
 							</tr>
 						</thead>
 						<tbody>
 							<%
 							ArrayList<ProdVO> list2 = dao.Sell_List2(mem_num);
-							for (int i = 0; i < list.size(); i++) {
+							for (int i = 0; i < list2.size(); i++) {
+									String bidderId = "";
+								if(list2.get(i).getBidder_id() == 0){
+									bidderId = "낙찰자 없음";
+								} else {
+									bidderId = Integer.toString(list2.get(i).getBidder_id());
+								}
 							%>
 							<tr>
-								<td><%=list.get(i).getProd_num()%></td>
-								<td><%=list.get(i).getProd_name()%></td>
-								<td><%=list.get(i).getProd_price()%></td>
-								<td><%=list.get(i).getProd_cur()%></td>
+								<td><%=list2.get(i).getProd_num()%></td>
+								<td><%=list2.get(i).getProd_name()%></td>
+								<td><%=list2.get(i).getProd_price()%></td>
+								<td><%=list2.get(i).getProd_cur()%></td>
+								<td><%=bidderId%></td>	
 							</tr>
 							<%
 							}

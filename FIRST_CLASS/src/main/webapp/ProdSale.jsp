@@ -46,7 +46,7 @@
 	Date now = new Date();	
 	
 	long diffSec = ((date.getTime() - now.getTime()) / 1000) % 60; // 초 차이
-	
+	int mem_po = (int) session.getAttribute("realDecPo");
 	%>
 	<div class="intro_bg">
 		<div class="header">
@@ -65,8 +65,7 @@
 			<%
 				if (info != null) {%>
 			<ul class="nav">
-				<li><%=info.getMem_grade()%>
-				<li>
+				<li><%=info.getMem_grade()%> 등급</li>
 				<li><%=info.getMem_name()%>님</li>
 				<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 				<li><a href="LogoutService">로그아웃</a></li>
@@ -139,8 +138,9 @@
 						<!-- 현재입찰가 -->
 						<div class="detail-bidcost-inner">
 							<!-- 							<span id="prod_cur">현재 입찰가</span> -->
-							<span>현재 입찰가</span> <span style="float: right;"><%=vo.getProd_cur()%>
-								원</span>
+							<span>현재 입찰가</span> 
+							<span style="float: right; padding-left: 6px;">원</span>
+							<span id="prod_cur" style="float: right;"><%=vo.getProd_cur()%></span>
 						</div>
 					</div>
 					<div class="prod_imme">
@@ -158,13 +158,13 @@
 						<div class="detail-bidding-right">
 							<div>
 								<input type="text" id="bid" placeholder="입찰가 입력">
-								<button type="button" id="bidCheck">입찰가능?</button>
+								<button type="button" id="bidCheck">조회</button>
 							</div>
 							<hr class="detail-bidding-hr">
 							<span id="bidCheckResult">입찰 가능시 아래 버튼이 활성화됩니다.</span><br>
 							<hr class="detail-bidding-hr">
 							<button type="button" class="total-button success-button"
-								id="bidCommit" disabled>입찰확정</button>
+								id="bidCommit" disabled>확정</button>
 							<br>
 							<hr class="detail-bidding-hr">
 							<span id="bidCommitResult">입찰 성공여부가 출력됩니다.</span><br>
@@ -180,12 +180,27 @@
 		var bid = 0;
 		var prod_imme = 0;
 		var value = "";
+		var nowPoint;
 		var interval = setInterval(calRemain, 1000);
 		
 		$(document).ready(function() {
 			console.log("문서 로드 완료");
 			calRemain();
 		});
+		
+ 		setInterval(nowPo, 1000);
+		function nowPo(){
+			$.ajax({
+				url : "nowPoService",
+				method : "POST",
+				dataType : "JSON",
+				success : resultPo,
+				error : errFun
+			});
+		}		
+		function resultPo(data){
+			nowPoint=data[0].mem_po;
+		} 
 
 		function calRemain() {
 			$.ajax({
@@ -225,6 +240,8 @@
 			prod_imme = Number($('#prod_imme2').text());
 			console.log(bid + '유효 검사 / 버튼 클릭');
 			console.log("현재시간 : "+<%=diffSec%>);
+			
+			
 			$.ajax({
 				url : "bidCheckService",
 				method : "POST",
@@ -235,30 +252,33 @@
 					console.log(data.bidCheck);
 					
 					if(value!="경매종료"){ //경매 중
-						if(bid<=<%=info.getMem_po()%>){ //내가 가진 포인트가 입력한 값보다 크거나 같을 때 
+						if(bid<=nowPoint || nowPoint-<%=mem_po%> >0){ //내가 가진 포인트가 입력한 값보다 크거나 같을 때 
 							if (data.bidCheck == "OK") { //입찰 가능할 때 
 								if (prod_imme >= bid) { // 입력한 값이 즉시 구매가보다 작을 때
-									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능!");
+									$("#bidCheckResult").text("최고입찰가! " + bid + "(으)로 입찰 가능합니다!");
 									$("#bidCheckResult").css("color", "black");
 									$("#bidCommit").removeAttr("disabled");
 									$("#bidCheck").attr("disabled", true);
+									$("#bid").attr("readonly",true);
+									updatePo();
 								} else { //즉시 구매가가 입력한 값보다 작을 때
-									$("#bidCheckResult").text("나같으면 즉시구매함 ㅋㅋ("+prod_imme+")");
+									$("#bidCheckResult").text("즉시구매 가능한 입찰가입니다. 즉시구매를 추천합니다.("+prod_imme+")");
 									$("#bidCheckResult").css("color", "red");
 									$("#bidCommit").attr("disabled", "disabled");
 								}
 							} else { //입찰 안될 때 
-								$("#bidCheckResult").text("더 써보세요...");
+								$("#bidCheckResult").text("현재 입찰가보다 적은 금액을 입력하셨습니다. 금액을 올려서 다시 입찰해주세요.");
 								$("#bidCheckResult").css("color", "red");
 								$("#bidCommit").attr("disabled", "disabled");
 							}
+							
 						} else { //내가 가진 포인트가 입력한 값보다 작을 때 
-							$("#bidCheckResult").text("보유한 포인트가 부족합니다!\n("+<%=info.getMem_po()%>+")원 보유중!");
+							$("#bidCheckResult").text("보유한 포인트가 부족합니다.\n 보유중인 포인트는("+nowPoint+")원 입니다.");
 							$("#bidCheckResult").css("color", "red");
 							$("#bidCommit").attr("disabled", "disabled");
 						}
 					} else { //경매 종료
-						$("#bidCheckResult").text("경매 끝났어요~");
+						$("#bidCheckResult").text("경매가 종료되었습니다.");
 						$("#bidCheckResult").css("color", "red");
 						$("#bidCommit").attr("disabled", "disabled");						
 					}
@@ -285,7 +305,9 @@
 						$("#bidCommitResult").text("입찰성공!");
 						$("#bidCommitResult").css("color","black");
 						$("#bidCheck").attr("disabled", false);
+						$("#bid").attr("readonly",false);
 						$("#bidCommit").attr("disabled", "disabled");
+						updateRealPo();
 					} else {
 						$("#bidCommitResult").text("입찰실패...");
 						$("#bidCommitResult").css("color","red");
@@ -313,13 +335,39 @@
 			nowCur+=data[0].prod_cur;
 			$("#prod_cur").text(nowCur);
 		}
+		
+		// 포인트 얼마 까일지 계산하는 곳
+ 		function updatePo(){
+			$.ajax({
+				url : "updatePoService",
+				method : "POST",
+				data : {"bid_price":bid},
+				dataType : "JSON",
+				success:function(){
+					console.log("통신성공");
+				},
+				error:errFun
+			});
+		}
+		
+ 		// 실제 포인트 차감하는 곳
+ 		function updateRealPo(){
+ 			$.ajax({
+ 				url:"updateRealPoService",
+ 				method:"POST",
+ 				dataType:"JSON",
+ 				success:function(){
+ 					console.log("통신성공");
+ 				},
+ 				error:errFun
+ 			});
+ 		}
 	</script>
 	<%}%>
 </body>
 <script type="text/javascript">
 	function enterkey() {
 		if (window.event.keyCode == 13) {
-
 			// 엔터키가 눌렸을 때 실행하는 반응
 			$("#form").submit();
 		}

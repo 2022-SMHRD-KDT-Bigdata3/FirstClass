@@ -44,18 +44,6 @@ public class updatePoService extends HttpServlet {
 		
 		session.setAttribute("realDecPo", realDecPo);
 
-//		// 포인트를 변동시킬 멤버의 정보를 갖고 있는 vo(Change vo)
-//		MemVO cvo = new MemVO(mem_num, mem_po);
-//		MemDAO mdao = new MemDAO();
-//
-//		int res = mdao.pointMinus(cvo);
-//
-//		if (res > 0) {
-//			System.out.println("포인트 차감 성공!");
-//		} else {
-//			System.out.println("포인트 차감 실패...");
-//		}
-
 	}
 
 }

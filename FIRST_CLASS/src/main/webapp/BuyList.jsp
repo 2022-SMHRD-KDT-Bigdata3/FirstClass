@@ -47,8 +47,7 @@
 				if (info != null) {
 				%>
 				<ul class="nav">
-					<li><%=info.getMem_grade()%>
-					<li>
+					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>

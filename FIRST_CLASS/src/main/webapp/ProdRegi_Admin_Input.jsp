@@ -57,8 +57,7 @@
 				if (info != null) {
 				%>
 				<ul class="nav">
-					<li><%=info.getMem_grade()%>
-					<li>
+					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>
@@ -155,7 +154,7 @@
 								</tr>
 								<tr>
                                     <td>전문가 감정가</td>
-                                    <td><input type="text" name="prod_price" id="evaluation_price">
+                                    <td><input type="text" name="prod_price" id="evaluation_price" class="inp">
                                         <button type="button" onclick="calPrice()">계산</button>
                                     </td>
                                 </tr>
@@ -218,10 +217,10 @@
 <%=cal.get(Calendar.DATE)%>
 	+ "/"
 				+
-<%=cal.get(Calendar.HOUR_OF_DAY)%>
+<%=cal.get(Calendar.HOUR_OF_DAY) + aucTime%>
 	+ ":"
 				+
-<%=cal.get(Calendar.MINUTE) + aucTime%>
+<%=cal.get(Calendar.MINUTE)%>
 	+ ":"
 				+
 <%=cal.get(Calendar.SECOND)%>

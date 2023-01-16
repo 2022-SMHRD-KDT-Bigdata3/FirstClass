@@ -50,8 +50,7 @@
 				if (info != null) {
 				%>
 				<ul class="nav">
-					<li><%=info.getMem_grade()%>
-					<li>
+					<li><%=info.getMem_grade()%> 등급</li>
 					<li><%=info.getMem_name()%>님</li>
 					<li><a href="MemberUpdate.jsp">마이페이지</a></li>
 					<li><a href="LogoutService">로그아웃</a></li>
@@ -80,7 +79,7 @@
 			</div>
 			<div class="header_menu">
 				<div class="header_contents">
-					<li><a href="Popprod.jsp">인기 경매</a></li>
+					<li><a href="PopProd.jsp">인기 경매</a></li>
 					<li><a href="UrgencyProd.jsp">급처 경매</a></li>
 					<li><a href="ProdRegi_Member.jsp">판매 등록</a></li>
 					<li><a href="PostMain.jsp">문의 게시판</a></li>
@@ -197,7 +196,7 @@
                         html += "' width='200px' height='200px'></td>";
 						html += "<td>" + data[i].prod_num + "</td>";
 						html += "<td>" + data[i].prod_name + "</td>";
-						html += "<td>" + data[i].seller + "</td>";
+						html += "<td>" + data[i].mem_num + "</td>";
 						html += "</tr>";
 					}
 					$("#failBidList").html(html);
