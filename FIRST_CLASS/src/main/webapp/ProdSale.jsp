@@ -130,7 +130,7 @@
 					<div class="detail_Prodprice">
 						<!-- 경매시작가 -->
 						<div class="detail-price-inner">
-							<span>경매 시작가</span> <span style="float: right;"><%=vo.getProd_cur()%>
+							<span>감정가</span> <span style="float: right;"><%=vo.getProd_price()%>
 								원</span>
 						</div>
 					</div>

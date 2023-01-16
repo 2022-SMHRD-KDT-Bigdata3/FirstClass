@@ -66,32 +66,32 @@ public class setSucBidderService extends HttpServlet {
 		} else {
 			System.out.println("낙찰자 정보 업데이트 실패...");
 		}
-		
+
 		// 모든 입찰 건 찾아오기(누가누가 입찰 했니?)
 		Join3DAO j3dao = new Join3DAO();
 		ArrayList<Join3VO> allBidList = j3dao.selAllBid(prod_num);
 		System.out.println(allBidList.toString());
-		
-		for(int i=0;i<allBidList.size();i++) {
+
+		for (int i = 0; i < allBidList.size(); i++) {
 			mem_num = allBidList.get(i).getBidder();
 			int mem_po = allBidList.get(i).getBid_price();
-			int mres=0;
+			int mres = 0;
 			MemVO bidMemvo = new MemVO(mem_num, mem_po);
-			if(i==0) {
-				mres = mdao.pointMinus(bidMemvo);
-				if(mres>0) {
-					System.out.println(mem_num+"에게"+mem_po+"포인트 차감 성공!");
-				} else {
-					System.out.println(mem_num+"에게"+mem_po+"포인트 차감 실패...");
-				}
+//			if(i==0) {
+//				mres = mdao.pointMinus(bidMemvo);
+//				if(mres>0) {
+//					System.out.println(mem_num+"에게"+mem_po+"포인트 차감 성공!");
+//				} else {
+//					System.out.println(mem_num+"에게"+mem_po+"포인트 차감 실패...");
+//				}
+//			} else {
+			mres = mdao.pointPlus(bidMemvo);
+			if (mres > 0) {
+				System.out.println(mem_num + "에게" + mem_po + "포인트 반환 성공!");
 			} else {
-				mres = mdao.pointPlus(bidMemvo);
-				if(mres>0) {
-					System.out.println(mem_num+"에게"+mem_po+"포인트 반환 성공!");
-				} else {
-					System.out.println(mem_num+"에게"+mem_po+"포인트 반환 실패...");
-				}
+				System.out.println(mem_num + "에게" + mem_po + "포인트 반환 실패...");
 			}
+//			}
 		}
 
 		response.sendRedirect("AuctionConfirm.jsp");
