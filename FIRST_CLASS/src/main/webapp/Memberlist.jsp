@@ -82,7 +82,7 @@
 				</div>
 				<div class="side_contents">
 					<li><a href="ProdRegi_Admin.jsp">판매등록</a></li>
-					<li><a href="AuctionConfirm">경매확인</a></li>
+					<li><a href="AuctionConfirm.jsp">경매확인</a></li>
 				</div>
 			</div>
 			<div class="Urgency_list">
